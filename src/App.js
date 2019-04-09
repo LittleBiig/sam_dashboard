@@ -5,6 +5,7 @@ import RobotsOverview from "./components/RobotsOverviewPage/RobotsOverview";
 import RegistrationForm from "./components/Login/RegistrationForm";
 import LoginForm from "./components/Login/LoginForm";
 import {Divider} from "antd";
+import RobotDetailsPage from "./components/RobotDetailPage/RobotDetailsPage";
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Divider />
           <RobotsOverview/>
           <Divider />
+          <RobotDetailsPage />
       </div>
     );
   }

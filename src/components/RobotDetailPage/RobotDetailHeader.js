@@ -1,39 +1,42 @@
 import React, { Component } from 'react';
-import {Row, Col, Divider, Button, Icon} from 'antd';
+import {Row, Col, Divider, Button, Icon, Badge} from 'antd';
 
 class RobotDetailHeader extends Component {
     render() {
         return (
-            <Row className={"robot-overview"}>
-                <Col span={24} >
-                    <div className={"robot-overview--content"}>
-                        <div className={"d-flex justify-content-center"}>
+            <Row className={"robot-details"}>
+                <Col span={6}>
+                    <a className={"d-flex justify-content-center align-center"} href="#">
+                        <Badge count={"live"}>
                             <Icon type="robot" style={{fontSize: '72px', color: 'red'}}/>
+                        </Badge>
+                    </a>
+                </Col>
+                <Col span={1} style={{height: "250px"}}>
+                    <Divider type="vertical" style={{height: "100%", background: "#E8E8E8"}}/>
+                </Col>
+                <Col span={8} >
+                    <div className={"robot-overview--content"}>
+                        <div className={"d-flex justify-content-space-between"}>
+                        <h2 className={"display-1 text-center robot-overview--content--title"}>sam #28941</h2>
+                            <Badge status="success"  text="Online"/>
                         </div>
-                        <p className={"text-center robot-overview--content--title"}>sam #28941</p>
-                        <div className={"d-flex justify-content-center"}>
+                        <div className={"d-inline-flex justify-content-center"}>
                             <Icon type="home" />
+                            <p className={"robot-overview--content--address"}>Mythenquai 28 Zurich</p>
                         </div>
-                        <p className={"text-center robot-overview--content--address"}>Mythenquai 28</p>
-                        <p className={"text-center robot-overview--content--overall-activity"}>overall activity</p>
-                        <p className={"text-center robot-overview--content--since"}><small>since 2 months</small></p>
-                        <Row>
-                            <Col span={11} className={"d-flex flex-column justify-content-center robot-overview--content--activity"} >
-                                <p className={"h2 text-center robot-overview--content--activity--figure"}>8k</p>
-                                <p className={"text-center robot-overview--content--activity--term"}>viewings</p>
-                            </Col>
-                            <Col span={2} style={{height: "60px"}}>
-                                <Divider type="vertical" style={{height: "100%", background: "#212529"}}/>
-                            </Col>
-                            <Col span={11} className={"d-flex flex-column justify-content-center robot-overview--content--activity"}>
-                                <p className={"h2 text-center robot-overview--content--activity--figure"}>10kg</p>
-                                <p className={"text-center robot-overview--content--activity--term"}>CO2</p>
-                            </Col>
-                        </Row>
+                        <Button type="primary">Connect now</Button>
                     </div>
-                    <div className={"robot-overview--footer"}>
-                        <p className={"text-center"}>This SAM has no flat: <a className={"robot-overview--links"} href={"/"}><u> select a flat</u></a>.</p>
+                </Col>
+                <Col span={1} style={{height: "250px"}}>
+                    <Divider type="vertical" style={{height: "100%", background: "#E8E8E8"}}/>
+                </Col>
+                <Col span={6}>
+                    <div className={"d-flex justify-content-center"}>
+                        <Icon type="thunderbolt" style={{fontSize: '36px', color:"green"}}/>
                     </div>
+                    <p className={"text-center"}>battery</p>
+                    <p className={"display-3 text-center"}>51%</p>
                 </Col>
             </Row>
         );
