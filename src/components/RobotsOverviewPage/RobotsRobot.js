@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Row, Col, Divider, Button, Icon} from 'antd';
+import {Link} from "react-router-dom";
 
 class RobotsRobot extends Component {
     render() {
@@ -32,6 +33,7 @@ class RobotsRobot extends Component {
                         </Row>
                         <div className={"d-flex justify-content-center "}>
                             <Button type= "default" className={"robot-overview--content--see-more"} href={"/"}>see more</Button>
+                            <Link to={`/api/robot/id`} activeClassName="active">click</Link>
                         </div>
                     </div>
                         <div className={"robot-overview--footer"}>

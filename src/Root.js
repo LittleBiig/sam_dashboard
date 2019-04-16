@@ -9,6 +9,7 @@ import NavItemLink from './NavItemLink';
 import RobotsRobot from "./components/RobotsOverviewPage/RobotsRobot";
 import LoginForm from "./components/Login/LoginForm";
 import RobotsOverview from "./components/RobotsOverviewPage/RobotsOverview";
+import RobotDetailsPage from "./components/RobotDetailPage/RobotDetailsPage";
 
 const TO_PREFIX = '/api';
 
@@ -30,6 +31,10 @@ const navItems = [{
 }, {
     label: 'My Projects',
     to: `${TO_PREFIX}/myprojects`,
+    icon: 'My Projects icon',
+},{
+    label: 'My Robot Details',
+    to: `${TO_PREFIX}/robot/id`,
     icon: 'My Projects icon',
 },];
 
@@ -80,6 +85,7 @@ class Root extends PureComponent {
                     <Route path={navItems[1].to} component={LoginForm} />
                     <Route path={navItems[2].to} component={RobotsOverview} />
                     <Route path={navItems[3].to} component={RobotsOverview} />
+                    <Route path={navItems[4].to} component={RobotDetailsPage} />
                 </Switch>
             </NavigationDrawer>
         );
