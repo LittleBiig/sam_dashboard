@@ -1,0 +1,27 @@
+export const API_BASE_URL = "https://sam-dashboard-test.herokuapp.com";
+export const POST_OWNER_LOGIN = "/owner_login"; // POST  {"email": "real@bot.com","password": "realbot123"}
+export const GET_OWNER_DATA = "/get_owner_data"; // GET  X-Auth in every following request
+export const GET_OWNER_LOGOUT = "/owner_logout"; // GET
+export const GET_OWNER_ROBOT_LIST = "/get_owner_robot_list"; // GET
+export const GET_ROBOT___ID = "/robot"; // GET "/robot/{id}"
+export const GET_OWNER_APARTMENT_LIST = "/get_owner_apartment_list"; // GET
+export const GET_APARTMENT___ID = "/apartment"; // GET "/apartment/{id}"
+
+// post to /robot_update/id ===> {"current_apartment_id": "234234234"}
+// var body = _.pick(req.body, ['given_name', 'current_apartment_id', 'server_command']);
+// {"current_apartment_id: "234234234"}
+export const POST_APARTMENT_UPDATE___ID = "/apartment_update"; // POST '/apartment_update/{id}'
+/*
+'name', 'public_viewing_allowed', 'signup_required', 'empty_since', 'application_method', 'address', 'max_viewing_time_in_min', 'size_in_m2', 'num_rooms', 'floor_nr', 'position', 'construction_year', 'last_renovation_year', 'is_project_open'
+ position: "left", "center", "right"
+ */
+export const POST_ROBOT_UPDATE___ID = "/robot_update"; // POST '/robot_update/{id}'
+
+/*
+'given_name', 'current_apartment_id' (the most used is current_apartment_id)
+ */
+
+
+
+
+
