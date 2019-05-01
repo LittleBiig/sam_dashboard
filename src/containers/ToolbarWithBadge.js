@@ -1,21 +1,16 @@
 /* ToolbarWithBadge.jsx */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Button, Toolbar } from 'react-md';
+import { Toolbar } from 'react-md';
 
 import BadgeWithDialog from './BadgeWithDialog';
 
-const ToolbarWithBadge = ({ notifications, onDismiss }) => (
+const ToolbarWithBadge = ({ nav, notifications, onDismiss }) => (
     <Toolbar
         colored
-        nav={<Button icon>menu</Button>}
+        nav={nav}
         title="Example"
         actions={<BadgeWithDialog notifications={notifications} onDismiss={onDismiss} />}
     />
 );
 
-ToolbarWithBadge.propTypes = {
-    onDismiss: PropTypes.func.isRequired,
-    notifications: PropTypes.array.isRequired,
-};
 export default ToolbarWithBadge;

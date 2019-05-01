@@ -2,14 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Route, Switch} from 'react-router-dom';
-import {Drawer } from 'react-md';
+import {Button, Drawer} from 'react-md';
 import { toTitle } from './utils/strings';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import NavItemLink from './containers/NavItemLink';
-import RobotListItem from "./components/RobotsOverviewPage/RobotListItem";
 import LoginForm from "./components/Login/LoginForm";
-import RobotList from "./components/RobotsOverviewPage/RobotList";
 import {Icon} from "antd";
 import ToolbarWithBadge from "./containers/ToolbarWithBadge";
 import ProjectListContainer from "./components/ProjectsOverviewPage/ProjectListContainer";
@@ -122,7 +120,10 @@ class Root extends PureComponent {
 
         return (
             <div>
-                <ToolbarWithBadge notifications={this.state.notifications} onDismiss={this.dismiss} />
+                <ToolbarWithBadge
+                    nav={<Button icon onClick={this.showDrawer}>menu</Button>}
+                    notifications={this.state.notifications}
+                    onDismiss={this.dismiss} />
                 <CSSTransitionGroup
                     component="div"
                     transitionName="md-cross-fade"
