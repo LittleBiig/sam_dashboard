@@ -1,0 +1,6 @@
+@import '../../node_modules/react-md/src/scss/react-md';
+@include react-md-everything;
+
+// Variable overrides
+$md-primary-color: $md-teal-500;
+$md-secondary-color: $md-purple-a-400;

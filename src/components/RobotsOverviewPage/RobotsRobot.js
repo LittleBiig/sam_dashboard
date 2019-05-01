@@ -105,7 +105,16 @@ class RobotsRobot extends Component {
                         <div className={"d-flex justify-content-center"}>
                             <Icon type="home" />
                         </div>
-                        <p className={"text-center robot-overview--content--address"}>{this.state.apartment.name}</p>
+                        {
+                            this.state.apartment === "none"
+                                ? <a className={"robot-overview--content--address text-center "} href={""}>
+                                    -
+                                </a>
+                                :  <a className={"robot-overview--content--address text-center "} href={""}>
+                                    {this.state.apartment.name}
+                                </a>
+                        }
+
                         <p className={"text-center robot-overview--content--overall-activity"}>overall activity</p>
                         <p className={"text-center robot-overview--content--since"}><small>since 2 months</small></p>
                         <Row>
@@ -122,8 +131,9 @@ class RobotsRobot extends Component {
                             </Col>
                         </Row>
                         <div className={"d-flex justify-content-center "}>
-                            <Button type= "default" className={"robot-overview--content--see-more"} href={"/"}>see more</Button>
-                            <Link to={`/api/robot/id`} activeClassName="active">click</Link>
+                            <Link to={`/api/robot/${this.state.robot._id}`} activeClassName="active">
+                                <Button type= "default" className={"robot-overview--content--see-more"} href={"/"}>see more</Button>
+                            </Link>
                         </div>
                     </div>
                         <div className={"robot-overview--footer"}>

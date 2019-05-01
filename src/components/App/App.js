@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 
-import RobotsOverview from "./components/RobotsOverviewPage/RobotsOverview";
-import RegistrationForm from "./components/Login/RegistrationForm";
-import LoginForm from "./components/Login/LoginForm";
+import RobotsOverview from "../RobotsOverviewPage/RobotsOverview";
+import RegistrationForm from "../Login/RegistrationForm";
+import LoginForm from "../Login/LoginForm";
 import {Divider} from "antd";
-import RobotDetailsPage from "./components/RobotDetailPage/RobotDetailsPage";
+import RobotDetailsPage from "../RobotDetailPage/RobotDetailsPage";
 
 class App extends Component {
   render() {

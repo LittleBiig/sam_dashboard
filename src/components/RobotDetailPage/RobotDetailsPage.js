@@ -10,6 +10,7 @@ class RobotDetailsPage extends Component {
                 <RobotDetailHeader/>
                 <Row>
                     <Col span={8}>
+                        {this.props.param.id}
                         <RobotDetailBigCard />
                     </Col>
                     <Col span={8}>
