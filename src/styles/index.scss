@@ -1,6 +1,7 @@
-@import '../../../node_modules/antd/dist/antd.css';
-@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../../styles/globals";
+@import '../../node_modules/antd/dist/antd.css';
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "globals";
+@import "notifications";
 
 .App {
     background-color: #EFEFF6;

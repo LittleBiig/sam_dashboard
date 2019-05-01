@@ -12,6 +12,7 @@ import LoginForm from "./components/Login/LoginForm";
 import RobotsOverview from "./components/RobotsOverviewPage/RobotsOverview";
 import RobotDetailsPage from "./components/RobotDetailPage/RobotDetailsPage";
 import {Icon} from "antd";
+import ToolbarWithBadge from "./containers/ToolbarWithBadge";
 
 const TO_PREFIX = '/api';
 
@@ -38,9 +39,38 @@ const navItems = [{
 },{
     label: 'My Robot Details',
     to: `${TO_PREFIX}/robot/:id`,
-    exact: false,
+    exact: true,
     icon: <Icon type="profile" />,
 },];
+
+const unsplash = 'https://unsplash.it/100?image=';
+
+const NOTIFICATIONS = [{
+    id: 'fake-google-notification-1',
+    image: `${unsplash}1027`,
+    alt: 'A lady from unsplash.it',
+    message: 'Emilia Kristensen shared an image with you.',
+}, {
+    id: 'fake-google-notification-2',
+    image: `${unsplash}1025`,
+    alt: 'A pug in a blanket',
+    message: 'Scot Dixon did something amazing. Why don\'t you check it out?',
+}, {
+    id: 'fake-google-notification-3',
+    image: `${unsplash}1011`,
+    alt: 'A lady in a canoe',
+    message: 'Candida Salomon went canoeing. Check out the pictures they uploaded!',
+}, {
+    id: 'fake-google-notification-4',
+    image: `${unsplash}903`,
+    alt: 'A pretty moon',
+    message: 'You won\'t believe these 5 things about some random planet!',
+}, {
+    id: 'fake-google-notification-5',
+    image: `${unsplash}883`,
+    alt: 'A guy with clouds in the background',
+    message: 'Clouds. Clouds. Clouds. I\'m out of dummy data ideas.',
+}];
 
 const styles = {
     content: { minHeight: 'auto' },
@@ -54,7 +84,10 @@ class Root extends PureComponent {
     constructor(props) {
         super(props);
 
-        this.state = { visible: true };
+        this.state = {
+            visible: true,
+            notifications: NOTIFICATIONS,
+        };
     }
 
     componentDidMount() {
@@ -84,6 +117,12 @@ class Root extends PureComponent {
     };
 
 
+    dismiss = (index) => {
+        const notifications = this.state.notifications.slice();
+        notifications.splice(index, 1);
+        this.setState({ notifications });
+    };
+
 
     render() {
         const { location } = this.props;
@@ -96,7 +135,7 @@ class Root extends PureComponent {
 
         return (
             <div>
-                <Toolbar colored fixed title="Routing Example" nav={<Button icon onClick={this.showDrawer}><Icon type="bars" /></Button>} />
+                <ToolbarWithBadge notifications={this.state.notifications} onDismiss={this.dismiss} />
                 <CSSTransitionGroup
                     component="div"
                     transitionName="md-cross-fade"
@@ -108,7 +147,7 @@ class Root extends PureComponent {
                         <Route path={navItems[0].to} exact component={LoginForm} />
                         <Route path={navItems[1].to} component={LoginForm} />
                         <Route path={navItems[2].to} component={RobotsOverview} />
-                        <   Route path={navItems[3].to} component={RobotsOverview} />
+                        <Route path={navItems[3].to} component={RobotsOverview} />
                         <Route path={navItems[4].to} component={RobotDetailsPage} />
                     </Switch>
                 </CSSTransitionGroup>
