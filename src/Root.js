@@ -138,7 +138,7 @@ class Root extends PureComponent {
                     </Switch>
                 </CSSTransitionGroup>
                 <Drawer
-                    type={Drawer.DrawerTypes.FULL_HEIGHT}
+                    type={Drawer.DrawerTypes.TEMPORARY}
                     visible={visible}
                     onVisibilityChange={this.handleVisibility}
                     renderNode={this.dialog}

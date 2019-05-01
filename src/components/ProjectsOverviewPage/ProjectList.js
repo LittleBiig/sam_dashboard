@@ -45,7 +45,6 @@ class ProjectList extends Component {
 
     render() {
         const renderProjects = this.renderProjects();
-        console.log(this.state);
 
         return (
             <>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Route, Switch} from "react-router";
-import {API_PREFIX} from "../../constants/api";
-import {Row} from "antd";
+import { Route, Switch } from "react-router";
+import { API_PREFIX } from "../../constants/api";
+import { Row } from "antd";
 import ProjectList from "./ProjectList";
 import ProjectDetailContainer from "../ProjectDetailPage/ProjectDetailContainer";
 

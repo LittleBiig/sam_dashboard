@@ -4,7 +4,8 @@ class ProjectDetailContainer extends Component {
     render() {
         return (
             <div>
-                hello
+                hello i'm the detail container
+                {this.props.match.params.id}
             </div>
         );
     }

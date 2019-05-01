@@ -1,29 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col, Divider, Button, Icon } from 'antd';
-import { Link } from "react-router-dom";
-import axios from "axios";
-import {API_BASE_URL, API_PREFIX, GET_APARTMENT___ID } from "../../constants/api";
-
-
-/*
-
-ROBOT
-
-battery_status: string,
-current_apartment_id: string,
-current_viewing_id: string,
-is_admin_connected: boolean,
-is_connected: boolean,
-is_in_use: boolean,
-is_loggedIn: boolean,
-name: string,
-owner_id: string,
-serial_number: string,
-server_command: string,
-_id: string,
-
- */
-
+import { Row, Col } from 'antd';
+import {Link} from "react-router-dom";
+import {API_PREFIX} from "../../constants/api";
 /*
 
 APARTMENT
@@ -58,12 +36,14 @@ class ProjectListItem extends Component {
         super(props);
     }
 
-
     render() {
         return (
             <Row className={"robot-overview"}>
                 <Col>
                     {this.props.project._id}
+                    <Link to={`${API_PREFIX}/projects/${this.props.project._id}`}>
+                        <div type= "default" className={"robot-overview--content--see-more"}>see more</div>
+                    </Link>
                 </Col>
             </Row>
         );
