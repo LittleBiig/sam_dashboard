@@ -1,4 +1,5 @@
-export const API_BASE_URL = "https://sam-dashboard-test.herokuapp.com";
+
+export const API_PREFIX = '/api';export const API_BASE_URL = "https://sam-dashboard-test.herokuapp.com";
 export const POST_OWNER_LOGIN = "/owner_login"; // POST  {"email": "real@bot.com","password": "realbot123"}
 export const GET_OWNER_DATA = "/get_owner_data"; // GET  X-Auth in every following request
 export const GET_OWNER_LOGOUT = "/owner_logout"; // GET
@@ -20,6 +21,7 @@ export const POST_ROBOT_UPDATE___ID = "/robot_update"; // POST '/robot_update/{i
 /*
 'given_name', 'current_apartment_id' (the most used is current_apartment_id)
  */
+
 
 
 

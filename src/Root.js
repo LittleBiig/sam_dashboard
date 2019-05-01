@@ -1,47 +1,22 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import {Link, Route, Switch} from 'react-router-dom';
-import {Button, Drawer, Toolbar} from 'react-md';
+import { Route, Switch} from 'react-router-dom';
+import {Drawer } from 'react-md';
 import { toTitle } from './utils/strings';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import NavItemLink from './containers/NavItemLink';
-import RobotsRobot from "./components/RobotsOverviewPage/RobotsRobot";
+import RobotListItem from "./components/RobotsOverviewPage/RobotListItem";
 import LoginForm from "./components/Login/LoginForm";
-import RobotsOverview from "./components/RobotsOverviewPage/RobotsOverview";
-import RobotDetailsPage from "./components/RobotDetailPage/RobotDetailsPage";
+import RobotList from "./components/RobotsOverviewPage/RobotList";
 import {Icon} from "antd";
 import ToolbarWithBadge from "./containers/ToolbarWithBadge";
+import ProjectsOverview from "./components/ProjectsOverviewPage/ProjectsOverview";
+import {API_PREFIX} from "./constants/api";
+import RobotListContainer from "./components/RobotsOverviewPage/RobotListContainer";
 
-const TO_PREFIX = '/api';
 
-const navItems = [{
-    label: 'Login',
-    to: `${TO_PREFIX}/login`,
-    exact: true,
-    icon: <Icon type="login" />,
-},{
-    label: 'Home',
-    to: `${TO_PREFIX}/home`,
-    exact: true,
-    icon: <Icon type="home" />,
-},{
-    label: 'My Robots',
-    to: `${TO_PREFIX}/myrobots`,
-    exact: true,
-    icon: <Icon type="robot" />,
-}, {
-    label: 'My Projects',
-    to: `${TO_PREFIX}/myprojects`,
-    exact: false,
-    icon: <Icon type="project" />,
-},{
-    label: 'My Robot Details',
-    to: `${TO_PREFIX}/robot/:id`,
-    exact: true,
-    icon: <Icon type="profile" />,
-},];
 
 const unsplash = 'https://unsplash.it/100?image=';
 
@@ -72,9 +47,32 @@ const NOTIFICATIONS = [{
     message: 'Clouds. Clouds. Clouds. I\'m out of dummy data ideas.',
 }];
 
-const styles = {
-    content: { minHeight: 'auto' },
-};
+const navItems = [{
+    label: 'Login',
+    to: `${API_PREFIX}/login`,
+    exact: true,
+    icon: <Icon type="login" />,
+},{
+    label: 'Home',
+    to: `${API_PREFIX}/home`,
+    exact: true,
+    icon: <Icon type="home" />,
+},{
+    label: 'My Robots',
+    to: `${API_PREFIX}/robots`,
+    exact: true,
+    icon: <Icon type="robot" />,
+}, {
+    label: 'My Projects',
+    to: `${API_PREFIX}/projects`,
+    exact: false,
+    icon: <Icon type="project" />,
+},{
+    label: 'My Robot Details',
+    to: `${API_PREFIX}/robots/:id`,
+    exact: true,
+    icon: <Icon type="profile" />,
+},];
 
 class Root extends PureComponent {
     static propTypes = {
@@ -98,7 +96,7 @@ class Root extends PureComponent {
     getCurrentTitle = ({ location: { pathname } }) => {
         const lastSection = pathname.substring(pathname.lastIndexOf('/') + 1);
         if (lastSection === 'navigation-drawers') {
-            return 'RobotsRobot';
+            return 'RobotListItem';
         }
 
         return toTitle(lastSection);
@@ -116,13 +114,11 @@ class Root extends PureComponent {
         this.setState({ visible });
     };
 
-
     dismiss = (index) => {
         const notifications = this.state.notifications.slice();
         notifications.splice(index, 1);
         this.setState({ notifications });
     };
-
 
     render() {
         const { location } = this.props;
@@ -146,9 +142,8 @@ class Root extends PureComponent {
                     <Switch key={location.pathname}>
                         <Route path={navItems[0].to} exact component={LoginForm} />
                         <Route path={navItems[1].to} component={LoginForm} />
-                        <Route path={navItems[2].to} component={RobotsOverview} />
-                        <Route path={navItems[3].to} component={RobotsOverview} />
-                        <Route path={navItems[4].to} component={RobotDetailsPage} />
+                        <Route path={navItems[2].to} component={RobotListContainer} />
+                        <Route path={navItems[3].to} component={ProjectsOverview} />
                     </Switch>
                 </CSSTransitionGroup>
                 <Drawer

@@ -3,14 +3,22 @@ import RobotDetailHeader from "./RobotDetailHeader";
 import RobotDetailBigCard from "./RobotDetailBigCard";
 import {Col, Row} from "antd";
 
-class RobotDetailsPage extends Component {
+class RobotDetailContainer extends Component {
+
+    constructor(props){
+        super(props);
+        console.log("this.props.param.id");
+        console.log(props.match.params.id);
+    }
+
     render() {
+
         return (
             <div className="">
                 <RobotDetailHeader/>
                 <Row>
                     <Col span={8}>
-                        {this.props.param.id}
+                        {this.props.match.params.id}
                         <RobotDetailBigCard />
                     </Col>
                     <Col span={8}>
@@ -25,4 +33,4 @@ class RobotDetailsPage extends Component {
     }
 }
 
-export default RobotDetailsPage;
+export default RobotDetailContainer;

@@ -53,7 +53,7 @@ _id: string,
 
  */
 
-class RobotsRobot extends Component {
+class ProjectsProject extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -145,4 +145,4 @@ class RobotsRobot extends Component {
     }
 }
 
-export default RobotsRobot;
+export default ProjectsProject;

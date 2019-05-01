@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 
-import RobotsOverview from "../RobotsOverviewPage/RobotsOverview";
+import RobotList from "../RobotsOverviewPage/RobotList";
 import RegistrationForm from "../Login/RegistrationForm";
 import LoginForm from "../Login/LoginForm";
 import {Divider} from "antd";
-import RobotDetailsPage from "../RobotDetailPage/RobotDetailsPage";
+import RobotDetailContainer from "../RobotDetailPage/RobotDetailContainer";
 
 class App extends Component {
   render() {
@@ -20,10 +20,10 @@ class App extends Component {
           <RegistrationForm/>
           <Divider />
           <h1 className={"text-center display-4"}>Robots Overview Page</h1>
-          <RobotsOverview/>
+          <RobotList/>
           <Divider />
           <h1 className={"text-center display-4"}>Details Page</h1>
-          <RobotDetailsPage />
+          <RobotDetailContainer />
       </div>
     );
   }

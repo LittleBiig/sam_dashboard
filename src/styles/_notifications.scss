@@ -33,6 +33,7 @@
     position: absolute;
     right: 0;
     width: $dialog-width;
+    z-index: 150;
 
     @media (max-width: 360px) {
       width: 280px;
