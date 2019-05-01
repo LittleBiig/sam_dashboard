@@ -12,7 +12,7 @@ import LoginForm from "./components/Login/LoginForm";
 import RobotList from "./components/RobotsOverviewPage/RobotList";
 import {Icon} from "antd";
 import ToolbarWithBadge from "./containers/ToolbarWithBadge";
-import ProjectsOverview from "./components/ProjectsOverviewPage/ProjectsOverview";
+import ProjectListContainer from "./components/ProjectsOverviewPage/ProjectListContainer";
 import {API_PREFIX} from "./constants/api";
 import RobotListContainer from "./components/RobotsOverviewPage/RobotListContainer";
 
@@ -67,11 +67,6 @@ const navItems = [{
     to: `${API_PREFIX}/projects`,
     exact: false,
     icon: <Icon type="project" />,
-},{
-    label: 'My Robot Details',
-    to: `${API_PREFIX}/robots/:id`,
-    exact: true,
-    icon: <Icon type="profile" />,
 },];
 
 class Root extends PureComponent {
@@ -123,11 +118,7 @@ class Root extends PureComponent {
     render() {
         const { location } = this.props;
         const { visible } = this.state;
-
         const navItemsMapped = navItems.map(props => <NavItemLink {...props} key={props.to} />);
-        console.log("navItemsMapped");
-        console.log(navItemsMapped);
-        navItemsMapped.splice(4,1);
 
         return (
             <div>
@@ -143,7 +134,7 @@ class Root extends PureComponent {
                         <Route path={navItems[0].to} exact component={LoginForm} />
                         <Route path={navItems[1].to} component={LoginForm} />
                         <Route path={navItems[2].to} component={RobotListContainer} />
-                        <Route path={navItems[3].to} component={ProjectsOverview} />
+                        <Route path={navItems[3].to} component={ProjectListContainer} />
                     </Switch>
                 </CSSTransitionGroup>
                 <Drawer

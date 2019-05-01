@@ -39,7 +39,8 @@ class RobotList extends Component {
 
     componentDidMount() {
         const robots = [];
-        axios.defaults.headers.common['x-auth'] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2I1MDZiNWM2YTkwNzAwMTZmNjNjZjAiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTU2NzE1NDM0fQ.Nozm4JityHSxugp0qrdHlBj_mSeVpMog86uG48UnNl4";
+        axios.defaults.headers.common['x-auth'] =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2I1MDZiNWM2YTkwNzAwMTZmNjNjZjAiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTU2NzE1NDM0fQ.Nozm4JityHSxugp0qrdHlBj_mSeVpMog86uG48UnNl4";
         axios.get(`${API_BASE_URL}${GET_OWNER_DATA}`)
             .then(res => {
                 const robot_id_list = res.data.robot_id_list;

@@ -1,10 +1,9 @@
-@import "globals";
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "globals";
 @import '../../node_modules/antd/dist/antd.css';
+@import "app";
 @import "notifications";
 @import "robot";
+@import "project";
 
-.App {
-    background-color: #EFEFF6;
-}
 
