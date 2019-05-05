@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'antd';
+import {Row, Col, Icon, Button, Empty, Divider} from 'antd';
 import {Link} from "react-router-dom";
 import {API_PREFIX} from "../../constants/api";
+import Text from "antd/lib/typography/Text";
+import Title from "antd/lib/typography/Title";
 /*
 
 APARTMENT
@@ -38,11 +40,45 @@ class ProjectListItem extends Component {
 
     render() {
         return (
-            <Row className={"robot-overview"}>
-                <Col>
-                    {this.props.project._id}
+            <Row className={"project-list-item p-2"}>
+                <Col className={"text-center mb-1"}>
+                    <div className={"project-list-item--image"} >
+                        <Empty
+                            description={
+                                <>
+                                    <span>No image</span>
+                                    <a style={{"display":"block"}} href="/">Select image</a>
+                                </>
+                            }
+                            image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                    </div>
+                </Col>
+
+                <Col className={"text-center mb-2"}>
+                    <Icon type="home" style={{ fontSize: '32px' }}/>
+                </Col>
+                <Col className={"text-center"}>
+                    <Text className={"h3"} strong>{this.props.project.name}</Text>
+                </Col>
+                <Col className={"text-center mb-3"}>
+                    <Text type="secondary" className={""}><small>last update: today at 18/03/19 15:21</small></Text>
+                </Col>
+                <Divider/>
+                <Col className={"text-center mb-2"}>
+                    <Text >Number of viewings</Text>
+                </Col>
+                <Col className={"text-center mb-3"}>
+                    <div className={"h3"}><Icon className={"mr-1"} type="eye" /><span>9</span></div>
+                </Col>
+                <Col className={"text-center mb-2"}>
+                    <Text >Total viewing time</Text>
+                </Col>
+                <Col className={"text-center mb-4"}>
+                    <div className={"h3"}><Icon className={"mr-1"} type="dashboard" /><span>1h 12mn</span></div>
+                </Col>
+                <Col className={"text-center mb-4"}>
                     <Link to={`${API_PREFIX}/projects/${this.props.project._id}`}>
-                        <div type= "default" className={"robot-overview--content--see-more"}>see more</div>
+                        <Button component="span" type= "secondary" className={"project-overview--content--see-more ant-btn btn-secondary"}>SEE MORE</Button>
                     </Link>
                 </Col>
             </Row>

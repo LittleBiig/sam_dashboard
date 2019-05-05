@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RobotListItem from "./RobotListItem";
-import { Col } from 'antd';
+import {Col, Row} from 'antd';
 import axios from 'axios';
 import {API_BASE_URL, GET_OWNER_DATA, GET_ROBOT___ID} from "../../constants/api";
 
@@ -60,7 +60,7 @@ class RobotList extends Component {
         let array_render=[];
         for(let i=0;i<this.state.robots.length;i++){
             array_render.push(
-                <Col xs={12} sm={12} lg={6} xl={6} key={i}>
+                <Col xs={12} sm={6} lg={4} xl={4} key={i} className={"robot-list"}>
                     <RobotListItem
                         robot={this.state.robots[i]}
                     />
@@ -74,9 +74,13 @@ class RobotList extends Component {
         const renderRobots = this.renderRobots();
 
         return (
-            <>
+            <Row>
+                <Col xs={{ span: 20, offset: 4 }}>
+                    <Row>
                 {renderRobots}
-            </>
+                    </Row>
+                </Col>
+            </Row>
         );
     }
 }
