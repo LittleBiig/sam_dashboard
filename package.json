@@ -2,6 +2,10 @@
   "name": "sam_dashboard",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.7.0",
+    "node": "11.13.0"
+  },
   "dependencies": {
     "@babel/core": "7.2.2",
     "@svgr/webpack": "4.1.0",

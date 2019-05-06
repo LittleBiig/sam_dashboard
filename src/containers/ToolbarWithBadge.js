@@ -8,8 +8,10 @@ const ToolbarWithBadge = ({ nav, notifications, onDismiss }) => (
     <Toolbar
         colored
         nav={nav}
-        title="Example"
-        actions={<BadgeWithDialog notifications={notifications} onDismiss={onDismiss} />}
+        title="Menu"
+        actions={
+            <BadgeWithDialog notifications={notifications} onDismiss={onDismiss} />
+        }
     />
 );
 

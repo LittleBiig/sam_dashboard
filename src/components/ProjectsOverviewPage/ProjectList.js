@@ -3,6 +3,7 @@ import ProjectListItem from "./ProjectListItem";
 import {Col, Row} from 'antd';
 import axios from 'axios';
 import {API_BASE_URL, GET_OWNER_APARTMENT_LIST } from "../../constants/api";
+import Text from "antd/lib/typography/Text";
 
 class ProjectList extends Component {
     constructor(props){
@@ -59,6 +60,9 @@ class ProjectList extends Component {
                     xl={{ span: 20, offset: 2 }}
                 >
                     <Row gutter={24}>
+                        <Col xs={24} className={"text-center mb-5"}>
+                            <Text className={"h1"}>APARTMENTS</Text>
+                        </Col>
                         {renderProjects}
                     </Row>
                 </Col>

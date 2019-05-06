@@ -3,6 +3,7 @@ import RobotListItem from "./RobotListItem";
 import {Col, Row} from 'antd';
 import axios from 'axios';
 import {API_BASE_URL, GET_OWNER_DATA, GET_ROBOT___ID} from "../../constants/api";
+import Text from "antd/lib/typography/Text";
 
 class RobotList extends Component {
     constructor(props){
@@ -60,7 +61,7 @@ class RobotList extends Component {
         let array_render=[];
         for(let i=0;i<this.state.robots.length;i++){
             array_render.push(
-                <Col xs={12} sm={6} lg={4} xl={4} key={i} className={"robot-list"}>
+                <Col xs={24} sm={12} lg={8} xl={6} key={i} className={"robot-list"}>
                     <RobotListItem
                         robot={this.state.robots[i]}
                     />
@@ -75,9 +76,18 @@ class RobotList extends Component {
 
         return (
             <Row>
-                <Col xs={{ span: 20, offset: 4 }}>
-                    <Row>
-                {renderRobots}
+                <Col
+                    xs={{ span: 20, offset: 2 }}
+                    sm={{ span: 20, offset: 2 }}
+                    md={{ span: 20, offset: 2 }}
+                    lg={{ span: 20, offset: 2 }}
+                    xl={{ span: 20, offset: 2 }}
+                >
+                    <Row gutter={24}>
+                        <Col xs={24} className={"text-center mb-5"}>
+                            <Text className={"h1"}>ROBOTS</Text>
+                        </Col>
+                        {renderRobots}
                     </Row>
                 </Col>
             </Row>

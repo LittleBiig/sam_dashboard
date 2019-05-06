@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Row, Col, Divider, Button, Icon } from 'antd';
+import {Row, Col, Divider, Icon, Badge, Avatar, Tag, Button} from 'antd';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import {API_BASE_URL, API_PREFIX, GET_APARTMENT___ID } from "../../constants/api";
+import Text from "antd/lib/typography/Text";
 
 
 /*
@@ -96,49 +97,72 @@ class RobotListItem extends Component {
     render() {
         return (
             <Row className={"robot-overview"}>
-                <Col span={24} >
-                    <div className={"robot-overview--content"}>
-                        <div className={"d-flex justify-content-center"}>
-                            <Icon type="robot" style={{fontSize: '72px', color: 'red'}}/>
-                        </div>
-                        <p className={"text-center robot-overview--content--title"}>{this.props.robot.name}</p>
-                        <div className={"d-flex justify-content-center"}>
-                            <Icon type="home" />
-                        </div>
-                        {
-                            this.state.apartment === "none"
-                                ? <a className={"robot-overview--content--address text-center "} href={""}>
-                                    -
-                                </a>
-                                :  <a className={"robot-overview--content--address text-center "} href={""}>
-                                    {this.state.apartment.name}
-                                </a>
-                        }
+                <Col span={24}  className={"robot-overview--content"}>
+                    <Row>
 
-                        <p className={"text-center robot-overview--content--overall-activity"}>overall activity</p>
-                        <p className={"text-center robot-overview--content--since"}><small>since 2 months</small></p>
-                        <Row>
-                            <Col span={11} className={"d-flex flex-column justify-content-center robot-overview--content--activity"} >
-                              <p className={"h2 text-center robot-overview--content--activity--figure"}>8k</p>
-                              <p className={"text-center robot-overview--content--activity--term"}>viewings</p>
-                            </Col>
-                            <Col span={2} style={{height: "60px"}}>
-                                <Divider type="vertical" style={{height: "100%", background: "#212529"}}/>
-                            </Col>
-                            <Col span={11} className={"d-flex flex-column justify-content-center robot-overview--content--activity"}>
-                              <p className={"h2 text-center robot-overview--content--activity--figure"}>10kg</p>
-                              <p className={"text-center robot-overview--content--activity--term"}>CO2</p>
-                            </Col>
-                        </Row>
-                        <div className={"d-flex justify-content-center "}>
-                            <Link to={`${API_PREFIX}/robots/${this.state.robot._id}`}>
-                                <div type= "default" className={"robot-overview--content--see-more"}>see more</div>
+                        <Col xs={{ span: 16, offset: 0 }} className={"mb-3"}>
+                            <Row>
+                                <Col span={24} className={"mb-2"}>
+                                    <Text className={"robot-overview--content--title h1"}>{this.props.robot.name}</Text>
+                                    <Tag color="red">{this.props.robot._id}</Tag>
+                                </Col>
+                                <Col xs={2}>
+                                    <Icon type="home" />
+                                </Col>
+                                <Col xs={{ span: 21, offset: 1 }} className={"mb-3"}>
+                                    {
+                                        this.state.apartment === "none"
+                                            ?
+                                            <>
+                                                <Text  className={""}>No apartment </Text>
+                                                <a className={"robot-overview--content--address "} href={""}>
+                                                    <u>Choose</u>
+                                                </a>
+                                            </>
+                                            :  <a className={"robot-overview--content--address "} href={""}>
+                                                {this.state.apartment.name}
+                                            </a>
+                                    }
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        <Col xs={{ span: 6, offset: 2 }} className={"justify-content-end "}>
+                            <Badge dot style={{ backgroundColor: "green"}}>
+                                <Avatar  shape={"square"} icon={"robot"} size={72} style={{ backgroundColor: "black", color: "white"}}/>
+                            </Badge>
+                        </Col>
+                        <Divider />
+                        <Col className={"text-center"}>
+                            <Text className={"text-center robot-overview--content--overall-activity h2"}>Activity</Text>
+                        </Col>
+                        <Col className={"text-center mb-3"}>
+                            <Text type="secondary" className={"text-center robot-overview--content--since "}><small>since 2 months</small></Text>
+                        </Col>
+                        <Col className={"text-center mb-4"}>
+                            <Row>
+                                <Col span={11} className={"d-flex flex-column justify-content-center robot-overview--content--activity"} >
+                                  <Text className={"h2 text-center robot-overview--content--activity--figure"}>8k</Text>
+                                  <Text type="secondary" className={"text-center robot-overview--content--activity--term"}>viewings</Text>
+                                </Col>
+                                <Col span={2} style={{height: "60px"}}>
+                                    <Divider type="vertical" style={{height: "100%", background: "#212529"}}/>
+                                </Col>
+                                <Col span={11} className={"d-flex flex-column justify-content-center robot-overview--content--activity"}>
+                                  <Text className={"h2 text-center robot-overview--content--activity--figure"}>10kg</Text>
+                                  <Text type="secondary" className={"text-center robot-overview--content--activity--term"}>CO2</Text>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col className={"text-center mb-5"}>
+                            <Link to={`${API_PREFIX}/robots/${this.props.robot._id}`}>
+                                <Button component="span" type= "secondary" className={"project-overview--content--see-more ant-btn btn-secondary"}>SEE MORE</Button>
                             </Link>
-                        </div>
-                    </div>
-                        <div className={"robot-overview--footer"}>
-                            <p className={"text-center"}>This SAM has no flat: <a className={"robot-overview--links"} href={"/"}><u> select a flat</u></a>.</p>
-                        </div>
+                        </Col>
+                        <Col className={"robot-overview--footer text-center"}>
+                            <Text className={""} style={{"color":"white"}}>This SAM is not linked to any apartment <Link className={"robot-overview--footer--links"} to={"/"}><u>Choose</u></Link></Text>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         );

@@ -1,49 +1,40 @@
+.robot {
+  &-overview {
+    @extend .card-wrapper;
 
-.robot-overview {
-  @extend .card-wrapper;
-}
+    &--content {
+      &--title {
+        color: black;
+        text-transform: uppercase;
+      }
 
-.robot-overview--content {
-  padding: 10px;
-}
-.robot-overview--content--title {
-  font-size: 30px;
-  color: black;
-  text-transform: uppercase;
-}
+      &--address {
+      }
 
-.robot-overview--content--address {
-  font-size: 20px;
-}
-.robot-overview--content--activity {
+      &--activity {
+      }
 
-}
+      &--see-more {
+      }
 
-.robot-overview--content--see-more{
+    }
 
-}
 
-.robot-overview--footer {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  background-color: red;
-  width: 100%;
-  padding: 5px;
-  margin: 0;
-}
+    &--footer {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      background-color: #1890ff;
+      padding: 8px;
+      margin: -15px; // petite combination pour que la partie du bas prenne toute la largeur
+      width: calc(100% + 2 * 15px); // idem
 
-.robot-overview--footer  p{
-  color: white;
-}
+      p {
+        color: white;
+      }
 
-.robot-overview--footer a{
-
-}
-
-.robot-details {
-  background-color: white;
-  padding: 15px;
-  margin: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 27px -9px rgba(0, 0, 0, 0.75);
+      a {
+        color: white
+      }
+    }
+  }
 }

@@ -51,11 +51,6 @@ const navItems = [{
     exact: true,
     icon: <Icon type="login" />,
 },{
-    label: 'Home',
-    to: `${API_PREFIX}/home`,
-    exact: true,
-    icon: <Icon type="home" />,
-},{
     label: 'My Robots',
     to: `${API_PREFIX}/robots`,
     exact: true,
@@ -121,7 +116,7 @@ class Root extends PureComponent {
         return (
             <div>
                 <ToolbarWithBadge
-                    nav={<Button icon onClick={this.showDrawer}>menu</Button>}
+                    nav={<Button icon onClick={this.showDrawer}><Icon type="align-left" /></Button>}
                     notifications={this.state.notifications}
                     onDismiss={this.dismiss} />
                 <CSSTransitionGroup
@@ -133,9 +128,8 @@ class Root extends PureComponent {
                 >
                     <Switch key={location.pathname}>
                         <Route path={navItems[0].to} exact component={LoginForm} />
-                        <Route path={navItems[1].to} component={LoginForm} />
-                        <Route path={navItems[2].to} component={RobotListContainer} />
-                        <Route path={navItems[3].to} component={ProjectListContainer} />
+                        <Route path={navItems[1].to} component={RobotListContainer} />
+                        <Route path={navItems[2].to} component={ProjectListContainer} />
                     </Switch>
                 </CSSTransitionGroup>
                 <Drawer

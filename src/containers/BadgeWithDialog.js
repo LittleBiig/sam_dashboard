@@ -45,19 +45,8 @@ export default class BadgeWithDialog extends PureComponent {
         const { visible } = this.state;
         const { notifications, className, onDismiss } = this.props;
         return (
-            <Badge
-                id="notification-badge-toggle"
-                className={className}
-                secondary
-                aria-haspopup
-                badgeId="notification-badge"
-                badgeContent={notifications.length}
-            >
-                <Button icon onClick={this.toggleDialog} aria-describedby="notification-badge">
-                    notifications
-                </Button>
-                <NotificationDialog visible={visible} onDismiss={onDismiss} notifications={notifications} />
-            </Badge>
+            <>
+                </>
         );
     }
 }
