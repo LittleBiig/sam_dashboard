@@ -14,21 +14,29 @@ class RobotDetailContainer extends Component {
     render() {
 
         return (
-            <div className="">
-                <RobotDetailHeader/>
-                <Row>
-                    <Col span={8}>
-                        {this.props.match.params.id}
-                        <RobotDetailBigCard />
-                    </Col>
-                    <Col span={8}>
-                        <RobotDetailBigCard />
-                    </Col>
-                    <Col span={8}>
-                        <RobotDetailBigCard />
-                    </Col>
-                </Row>
-            </div>
+            <Row>
+                <Col
+                    xs={{ span: 20, offset: 2 }}
+                    sm={{ span: 20, offset: 2 }}
+                    md={{ span: 20, offset: 2 }}
+                    lg={{ span: 20, offset: 2 }}
+                    xl={{ span: 18, offset: 4 }}
+                >
+                    <RobotDetailHeader {...this.props} id={this.props.match.params.id}/>
+                    {this.props.match.params.id}
+                    <Row gutter={48}>
+                        <Col span={8}>
+                            <RobotDetailBigCard />
+                        </Col>
+                        <Col span={8}>
+                            <RobotDetailBigCard />
+                        </Col>
+                        <Col span={8}>
+                            <RobotDetailBigCard />
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
         );
     }
 }

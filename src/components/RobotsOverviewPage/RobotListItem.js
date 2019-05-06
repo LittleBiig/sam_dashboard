@@ -132,7 +132,7 @@ class RobotListItem extends Component {
 
                         <Col xs={{ span: 6, offset: 2 }} className={"justify-content-end "}>
                             <Badge dot style={{ backgroundColor: "green"}}>
-                                <Avatar  shape={"square"} icon={"robot"} size={72} style={{ backgroundColor: "black", color: "white"}}/>
+                                <Avatar  icon={"robot"} size={72} style={{ backgroundColor: "rgba(0,0,0,0.1)", color: "#1890ff"}}/>
                             </Badge>
                         </Col>
                         <Divider />

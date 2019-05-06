@@ -37,4 +37,14 @@
       }
     }
   }
+
+  &-details {
+    &-header{
+      @extend .card-wrapper;
+    }
+
+    &-big-card {
+      @extend .card-wrapper;
+    }
+  }
 }

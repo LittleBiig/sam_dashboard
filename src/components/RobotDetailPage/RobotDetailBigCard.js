@@ -7,7 +7,7 @@ class RobotDetailBigCard extends Component {
 
     render() {
         return (
-            <div className={"robot-details "}>
+            <div className={"robot-details-big-card "}>
                     <p className={"text-center h2"}>MONEY SAVED</p>
                     <p className={"text-center display-2"}>CHF 12k</p>
                 <p className={"text-center"}><small>what does this mean?</small></p>
