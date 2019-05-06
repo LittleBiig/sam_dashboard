@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {PageHeader} from "antd";
+import {Col, PageHeader, Row} from "antd";
 import {API_PREFIX} from "../../constants/api";
+import ProjectDetailContent from "./ProjectDetailContent";
 
 class ProjectDetailContainer extends Component {
     routeChange = () => {
@@ -10,14 +11,22 @@ class ProjectDetailContainer extends Component {
 
     render() {
         return (
-            <div>
+            <Row>
+                <Col
+                    xs={{ span: 20, offset: 2 }}
+                    sm={{ span: 20, offset: 2 }}
+                    md={{ span: 20, offset: 2 }}
+                    lg={{ span: 20, offset: 2 }}
+                    xl={{ span: 18, offset: 4 }}
+                >
                 <PageHeader
                     onBack={this.routeChange}
                     title={this.props.match.params.id}
                     subTitle="A very cool apartment"
                 />
-            CONTENT
-            </div>
+                    <ProjectDetailContent {...this.props} _id={this.props.match.params.id}/>
+                </Col>
+            </Row>
         );
     }
 }

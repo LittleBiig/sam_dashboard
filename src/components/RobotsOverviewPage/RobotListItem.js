@@ -119,9 +119,12 @@ class RobotListItem extends Component {
                                                     <u>Choose</u>
                                                 </a>
                                             </>
-                                            :  <a className={"robot-overview--content--address "} href={""}>
+                                            :  <Link
+                                                className={"robot-overview--content--address "}
+                                                to={`${API_PREFIX}/projects/${this.state.apartment._id}`}
+                                            >
                                                 {this.state.apartment.name}
-                                            </a>
+                                            </Link>
                                     }
                                 </Col>
                             </Row>
