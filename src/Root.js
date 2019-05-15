@@ -13,6 +13,8 @@ import ToolbarWithBadge from "./containers/ToolbarWithBadge";
 import ProjectListContainer from "./components/ProjectsOverviewPage/ProjectListContainer";
 import {API_PREFIX} from "./constants/api";
 import RobotListContainer from "./components/RobotsOverviewPage/RobotListContainer";
+import RegistrationForm from "./components/Login/RegistrationForm";
+import InitialSetUpContainer from "./components/InitialSetUp/InitialSetUpContainer";
 
 
 
@@ -49,7 +51,17 @@ const navItems = [{
     label: 'Login',
     to: `${API_PREFIX}/login`,
     exact: true,
-    icon: <Icon type="login" />,
+    icon: <Icon type="check" />,
+},{
+    label: 'Sign Up',
+    to: `${API_PREFIX}/signup`,
+    exact: true,
+    icon: <Icon type="plus" />,
+},{
+    label: 'Initial Set up',
+    to: `${API_PREFIX}/setup`,
+    exact: true,
+    icon: <Icon type="tool" />,
 },{
     label: 'My Robots',
     to: `${API_PREFIX}/robots`,
@@ -59,7 +71,7 @@ const navItems = [{
     label: 'My Projects',
     to: `${API_PREFIX}/projects`,
     exact: false,
-    icon: <Icon type="project" />,
+    icon: <Icon type="highlight" />,
 },];
 
 class Root extends PureComponent {
@@ -128,8 +140,10 @@ class Root extends PureComponent {
                 >
                     <Switch key={location.pathname}>
                         <Route path={navItems[0].to} exact component={LoginForm} />
-                        <Route path={navItems[1].to} component={RobotListContainer} />
-                        <Route path={navItems[2].to} component={ProjectListContainer} />
+                        <Route path={navItems[1].to} exact component={RegistrationForm} />
+                        <Route path={navItems[2].to} exact component={InitialSetUpContainer} />
+                        <Route path={navItems[3].to} component={RobotListContainer} />
+                        <Route path={navItems[4].to} component={ProjectListContainer} />
                     </Switch>
                 </CSSTransitionGroup>
                 <Drawer
