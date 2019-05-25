@@ -95,16 +95,17 @@ class RobotListItem extends Component {
     }
 
     render() {
+        {/* TODO : checkout the todo's below */}
+
         return (
             <Row className={"robot-overview"}>
                 <Col span={24}  className={"robot-overview--content"}>
                     <Row>
-
                         <Col xs={{ span: 16, offset: 0 }} className={"mb-3"}>
                             <Row>
                                 <Col span={24} className={"mb-2"}>
                                     <Text className={"robot-overview--content--title h1"}>{this.props.robot.name}</Text>
-                                    <Tag color="red">{this.props.robot._id}</Tag>
+                                    <Text className={"robot-overview--content--title--id h1"}>{this.props.robot._id}</Text>
                                 </Col>
                                 <Col xs={2}>
                                     <Icon type="home" />
@@ -117,6 +118,7 @@ class RobotListItem extends Component {
                                                 <Text  className={""}>No apartment </Text>
                                                 <a className={"robot-overview--content--address "} href={""}>
                                                     <u>Choose</u>
+                                                    {/* TODO : 'apartment === "none"' Choose (function) */}
                                                 </a>
                                             </>
                                             :  <Link
@@ -140,12 +142,16 @@ class RobotListItem extends Component {
                             <Text className={"text-center robot-overview--content--overall-activity h2"}>Activity</Text>
                         </Col>
                         <Col className={"text-center mb-3"}>
-                            <Text type="secondary" className={"text-center robot-overview--content--since "}><small>since 2 months</small></Text>
+                            <Text type="secondary" className={"text-center robot-overview--content--since "}>
+                                <small>since 2 months</small>
+                                {/* TODO : 'Activity' since 2 months */}
+                            </Text>
                         </Col>
                         <Col className={"text-center mb-4"}>
                             <Row>
                                 <Col span={11} className={"d-flex flex-column justify-content-center robot-overview--content--activity"} >
                                   <Text className={"h2 text-center robot-overview--content--activity--figure"}>8k</Text>
+                                    {/* TODO : 'viewings' 8k */}
                                   <Text type="secondary" className={"text-center robot-overview--content--activity--term"}>viewings</Text>
                                 </Col>
                                 <Col span={2} style={{height: "60px"}}>
@@ -153,7 +159,8 @@ class RobotListItem extends Component {
                                 </Col>
                                 <Col span={11} className={"d-flex flex-column justify-content-center robot-overview--content--activity"}>
                                   <Text className={"h2 text-center robot-overview--content--activity--figure"}>10kg</Text>
-                                  <Text type="secondary" className={"text-center robot-overview--content--activity--term"}>CO2</Text>
+                                    {/* TODO : 'CO2' 10kg */}
+                                    <Text type="secondary" className={"text-center robot-overview--content--activity--term"}>CO2</Text>
                                 </Col>
                             </Row>
                         </Col>
@@ -163,7 +170,10 @@ class RobotListItem extends Component {
                             </Link>
                         </Col>
                         <Col className={"robot-overview--footer text-center"}>
-                            <Text className={""} style={{"color":"white"}}>This SAM is not linked to any apartment <Link className={"robot-overview--footer--links"} to={"/"}><u>Choose</u></Link></Text>
+                            <Text className={""} style={{"color":"white"}}>
+                                This SAM is not linked to any apartment <Link className={"robot-overview--footer--links"} to={"/"}><u>Choose</u></Link>
+                                {/* TODO : 'This SAM is not linked to any apartment' Choose (function) */}
+                            </Text>
                         </Col>
                     </Row>
                 </Col>

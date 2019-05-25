@@ -1,8 +1,12 @@
+$sam-unit--padding--card-bottom: 20px;
+$sam-unit--box-shadow--medium: 0px 0px 27px -9px $sam-color--grey--secondary;
+
 .card-wrapper {
-  background-color: white;
+  background-color: $sam-color--white--primary;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0px 0px 27px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: $sam-unit--box-shadow--medium;
+  margin-bottom: $sam-unit--padding--card-bottom;
 }
 
 .anticon {

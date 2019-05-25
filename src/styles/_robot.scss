@@ -2,10 +2,19 @@
   &-overview {
     @extend .card-wrapper;
 
+
     &--content {
+
+
       &--title {
         color: black;
         text-transform: uppercase;
+
+        &--id {
+          display: block;
+          font-size: 11px;
+          color: $sam-color--grey--tertiary;
+        }
       }
 
       &--address {
@@ -23,17 +32,17 @@
     &--footer {
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
-      background-color: #1890ff;
+      background-color: $sam-color--blue--primary;
       padding: 8px;
-      margin: -20px; // petite combination pour que la partie du bas prenne toute la largeur
+      margin: -20px; // fixture: pour que la partie du bas prenne toute la largeur
       width: calc(100% + 2 * 20px); // idem
 
       p {
-        color: white;
+        color: $sam-color--white--primary;
       }
 
       a {
-        color: white
+        color: $sam-color--white--primary
       }
     }
   }

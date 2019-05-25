@@ -4,3 +4,29 @@
 // Variable overrides
 $md-primary-color: $md-teal-500;
 $md-secondary-color: $md-purple-a-400;
+
+
+// Color variables
+$sam-color--black--primary: black;
+$sam-color--grey--primary: rgba(0, 0, 0, 0.65);
+$sam-color--grey--secondary: rgba(0, 0, 0, 0.75); // box-shadows,
+$sam-color--grey--tertiary: rgba(0, 0, 0, 0.45); // box-shadows,
+$sam-color--blue--primary: #1890ff;
+$sam-color--white--primary: white;
+
+
+$colors-list:
+        $sam-color--black--primary
+        $sam-color--grey--primary
+        $sam-color--grey--secondary
+        $sam-color--grey--tertiary
+        $sam-color--blue--primary
+        $sam-color--white--primary
+        ;
+
+@each $current-color in $colors-list {
+  $i: index($colors-list, $current-color);
+  .apply-color-#{$i} {
+    color: $current-color;
+  }
+}
