@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import ProjectListItem from "./ProjectListItem";
-import {Col, Row} from 'antd';
+import {Button, Col, Modal, Row} from 'antd';
 import axios from 'axios';
 import {API_BASE_URL, GET_OWNER_APARTMENT_LIST } from "../../constants/api";
 import Text from "antd/lib/typography/Text";
+import ProjectCreateProject from "./ProjectCreateProject";
 
 class ProjectList extends Component {
     constructor(props){
         super(props);
         this.state = {
             projects: {},
+            addProject: false,
         }
     }
 
@@ -23,6 +25,7 @@ class ProjectList extends Component {
                 console.log("res.data");
                 console.log(res.data);
                 this.setState({
+                    ...this.state,
                     projects: res.data,
                 });
             })
@@ -31,6 +34,15 @@ class ProjectList extends Component {
                 console.log(err);
             });
     };
+
+    showModal = () => {
+        this.setState({
+            ...this.state,
+            addProject: true,
+        });
+    };
+
+
 
     renderProjects = () => {
         let array_render=[];
@@ -62,6 +74,12 @@ class ProjectList extends Component {
                     <Row gutter={24}>
                         <Col xs={24} className={"text-center mb-5"}>
                             <Text className={"h1"}>APARTMENTS</Text>
+                        </Col>
+                        <Col xs={2} >
+                            <Button type="primary" onClick={this.showModal}>
+                                Add a new apartment
+                            </Button>
+                            <ProjectCreateProject addProject={this.state.addProject}/>
                         </Col>
                         {renderProjects}
                     </Row>

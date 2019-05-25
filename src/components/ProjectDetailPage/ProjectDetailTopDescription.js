@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
 import Text from "antd/lib/typography/Text";
 import { Button, Carousel, Col, DatePicker, Icon, Input, Row, Select, Switch } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 import axios from "axios";
 import {API_BASE_URL, GET_APARTMENT___ID, POST_APARTMENT_UPDATE___ID} from "../../constants/api";
-
-
-
 
 class ProjectDetailTopDescription extends Component {
     constructor(props){
@@ -38,13 +34,15 @@ class ProjectDetailTopDescription extends Component {
               last_renovation_year: null,
               is_project_open: true,
             }
-        }
+        };
         this.onInputChange = this.onInputChange.bind(this);
         this.getApartmentDetails = this.getApartmentDetails.bind(this);
         this.updateApartmentDetails = this.updateApartmentDetails.bind(this);
     }
 
     componentDidMount() {
+        console.log("this.props.match.params.id");
+        console.log(this.props.match.params.id);
         this.getApartmentDetails();
     }
 
@@ -53,16 +51,10 @@ class ProjectDetailTopDescription extends Component {
             .then(res => {
                 this.setState({
                     apartment: res.data,
-                }, () => {
-
                 });
-                console.log("res");
-                console.log(res);
-
             })
             .catch(err => console.log(err))
     }
-
 
     onInputChange(e){
         let {name, value} = e.target;
@@ -93,10 +85,7 @@ class ProjectDetailTopDescription extends Component {
     updateApartmentDetails = () => {
         axios.post(`${API_BASE_URL}${POST_APARTMENT_UPDATE___ID}/${this.props.match.params.id}`,
             this.state.apartment)
-            .then(res => {
-                console.log("updated Apartment Details");
-                console.log(res);
-            })
+            .then(() => this.getApartmentDetails())
             .catch(err => console.log(err))
     }
 
@@ -104,7 +93,6 @@ class ProjectDetailTopDescription extends Component {
         console.log(this.state.apartment);
         this.updateApartmentDetails();
     }
-
 
     render() {
         return (

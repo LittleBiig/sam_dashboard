@@ -120,7 +120,7 @@ class Root extends PureComponent {
         return (
             <div>
                 <ToolbarWithBadge
-                    nav={<Button icon onClick={this.showDrawer}><Icon type="align-left" /></Button>}
+                    nav={<Button icon onClick={this.showDrawer}><Icon type="align-right" /></Button>}
                     notifications={this.state.notifications}
                     onDismiss={this.dismiss} />
                 <CSSTransitionGroup
