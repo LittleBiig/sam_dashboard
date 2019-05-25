@@ -5,6 +5,11 @@
 $md-primary-color: $md-teal-500;
 $md-secondary-color: $md-purple-a-400;
 
+// Classes overrides
+.ant-input-number{
+  width: auto !important;
+}
+
 
 // Color variables
 $sam-color--black--primary: black;

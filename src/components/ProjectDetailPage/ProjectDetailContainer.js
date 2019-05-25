@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Col, PageHeader, Row} from "antd";
 import {API_PREFIX} from "../../constants/api";
-import ProjectDetailHeader from "./ProjectDetailHeader";
+import ProjectDetailTopDescription from "./ProjectDetailTopDescription";
 import ProjectDetailContent from "./ProjectDetailContent";
 
 class ProjectDetailContainer extends Component {
@@ -25,7 +25,7 @@ class ProjectDetailContainer extends Component {
                         title={this.props.match.params.id}
                         subTitle="A very cool apartment"
                     />
-                    <ProjectDetailHeader {...this.props} _id={this.props.match.params.id}/>
+                    <ProjectDetailTopDescription {...this.props} _id={this.props.match.params.id}/>
                     <ProjectDetailContent/>
                 </Col>
             </Row>

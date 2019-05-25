@@ -15,8 +15,6 @@ import {API_PREFIX} from "./constants/api";
 import RobotListContainer from "./components/RobotsOverviewPage/RobotListContainer";
 import RegistrationForm from "./components/Login/RegistrationForm";
 
-
-
 const unsplash = 'https://unsplash.it/100?image=';
 
 const NOTIFICATIONS = [{
