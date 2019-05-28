@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "trailing-comma-interface": false,
+    "jsx-space-before-trailing-slash": false,
+    "react/require-extension": "off"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2017
+  },
+  "env": {
+    "es6": true
+  }
+}
