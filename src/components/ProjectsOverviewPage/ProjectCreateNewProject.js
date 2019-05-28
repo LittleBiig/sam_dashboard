@@ -1,15 +1,22 @@
 import React, {Component} from 'react';
 import {Button, Col, DatePicker, Icon, Input, Modal, Row} from 'antd';
 import Text from "antd/lib/typography/Text";
+import {connect} from "react-redux";
+import {API_BASE_URL, GET_OWNER_APARTMENT_LIST, POST_CREATE_APARTMENT} from "../../constants/api";
+import axios from 'axios';
 
-class ProjectCreateProject extends Component {
+class ProjectCreateNewProject extends Component {
+
+
+
+
 
     constructor(props){
         super(props);
         this.state = {
             apartment : {
                 _id: "",
-                name: "",
+                name: "new flat 1",
                 public_viewing_allowed: true,
                 signup_required: false,
                 owner_id: "",
@@ -18,22 +25,38 @@ class ProjectCreateProject extends Component {
                 application_method: null,
                 application_link: null,
                 address: {
-                    street: "",
-                    house_nr: null,
-                    zip: null,
-                    city: "",
-                    country: "",
+                    street: "new street 1",
+                    house_nr: 1,
+                    zip: 800,
+                    city: "somewhere",
+                    country: "ch",
                 },
                 max_viewing_time_in_min: null,
                 size_in_m2: null,
                 num_rooms: null,
                 floor_nr: null,
-                position: "",
+                position: "unknown",
                 construction_year: null,
                 last_renovation_year: null,
                 is_project_open: true,
             }
         };
+        this.onInputChange = this.onInputChange.bind(this);
+        this.createNewApartment = this.createNewApartment.bind(this);
+        this.addProjectHandleCancel = this.addProjectHandleCancel.bind(this);
+
+    }
+
+    createNewApartment = () => {
+        axios.post(`${API_BASE_URL}${POST_CREATE_APARTMENT}`, this.state.apartment)
+            .then(res => {
+                console.log(res);
+
+            })
+            .catch(err => {
+                console.log("err");
+                console.log(err);
+            })
     }
 
 
@@ -76,27 +99,25 @@ class ProjectCreateProject extends Component {
         });
     };
 
-
     render() {
 
         return (
-
             <Modal
                 title="New apartment"
-                visible={this.props.addProject}
+                visible={this.props.modalOpen}
                 onOk={this.addProjectHandleOk}
                 onCancel={this.addProjectHandleCancel}
                 footer={[
                     <Button key="back" onClick={this.addProjectHandleCancel}>
                         Cancel
                     </Button>,
-                    <Button key="submit" type="primary" loading={true} onClick={this.addProjectHandleOk}>
+                    <Button key="submit" type="primary"  onClick={this.createNewApartment}>
                         Create a new apartment
                     </Button>,
                 ]}
             >
                 <Row>
-                    <Col xs={{ span: 24, offset: 0}} lg={{ span: 5, offset: 2}}>
+                    <Col xs={{ span: 24, offset: 0}} >
                         <Row>
                             <Col className={"mb-3"}>
                                 <Text className={"h1"} >Flat properties</Text>
@@ -202,4 +223,10 @@ class ProjectCreateProject extends Component {
     }
 }
 
-export default ProjectCreateProject;
+const mapStateToProps =(state)=> {
+    return {
+        modalOpen:  state.reducerExample.modalOpen,
+    }
+};
+
+export default connect(mapStateToProps)(ProjectCreateNewProject);

@@ -13,7 +13,7 @@ export const GET_OWNER_ROBOT_LIST = "/get_owner_robot_list"; // GET
 export const GET_ROBOT___ID = "/robot"; // GET "/robot/{id}"
 export const GET_OWNER_APARTMENT_LIST = "/get_owner_apartment_list"; // GET
 export const GET_APARTMENT___ID = "/apartment"; // GET "/apartment/{id}"
-export const POST_CREATE_APARTMENT___ID = "/apartment"; // POST "/apartment/" with required:
+export const POST_CREATE_APARTMENT = "/apartment"; // POST "/apartment/" with required:
 
 // name: string
 // address:{
@@ -53,7 +53,6 @@ export const POST_CREATE_APARTMENT___ID = "/apartment"; // POST "/apartment/" wi
 //             trim: true
 //     }
 // }
-
 
 // post to /robot_update/id ===> {"current_apartment_id": "234234234"}
 // var body = _.pick(req.body, ['given_name', 'current_apartment_id', 'server_command']);

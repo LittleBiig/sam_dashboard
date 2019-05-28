@@ -4,7 +4,7 @@ import {Button, Col, Modal, Row} from 'antd';
 import axios from 'axios';
 import {API_BASE_URL, GET_OWNER_APARTMENT_LIST } from "../../constants/api";
 import Text from "antd/lib/typography/Text";
-import ProjectCreateProject from "./ProjectCreateProject";
+import ProjectCreateNewProject from "./ProjectCreateNewProject";
 
 class ProjectList extends Component {
     constructor(props){
@@ -72,14 +72,12 @@ class ProjectList extends Component {
                     xl={{ span: 20, offset: 2 }}
                 >
                     <Row gutter={24}>
-                        <Col xs={24} className={"text-center mb-5"}>
-                            <Text className={"h1"}>APARTMENTS</Text>
-                        </Col>
-                        <Col xs={2} >
-                            <Button type="primary" onClick={this.showModal}>
+                        <Col xs={24} className={"mb-5"}>
+                            <Text className={"h1"}>APARTMENTS | </Text>
+                            <Button type="primary" onClick={this.showModal} icon={"plus"}>
                                 Add a new apartment
                             </Button>
-                            <ProjectCreateProject addProject={this.state.addProject}/>
+                            <ProjectCreateNewProject addProject={this.state.addProject}/>
                         </Col>
                         {renderProjects}
                     </Row>
