@@ -4,6 +4,8 @@ import Text from "antd/lib/typography/Text";
 import {connect} from "react-redux";
 import {API_BASE_URL, GET_OWNER_APARTMENT_LIST, POST_CREATE_APARTMENT} from "../../constants/api";
 import axios from 'axios';
+import reducerExample from "../../store/reducerExample";
+import {closeModal} from "../../store/actions";
 
 class ProjectCreateNewProject extends Component {
 
@@ -93,10 +95,12 @@ class ProjectCreateNewProject extends Component {
     };
 
     addProjectHandleCancel = () => {
-        this.setState({
-            ...this.state,
-            addProject: false,
-        });
+
+        this.props.closeModal();
+        // this.setState({
+        //     ...this.state,
+        //     addProject: false,
+        // });
     };
 
     render() {
@@ -229,4 +233,12 @@ const mapStateToProps =(state)=> {
     }
 };
 
-export default connect(mapStateToProps)(ProjectCreateNewProject);
+const mapDispatchToProps = dispatch => {
+    return {
+        // dispatching actions returned by action creators
+        closeModal: () => dispatch(closeModal()),
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectCreateNewProject);

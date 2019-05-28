@@ -5,6 +5,8 @@ import axios from 'axios';
 import {API_BASE_URL, GET_OWNER_APARTMENT_LIST } from "../../constants/api";
 import Text from "antd/lib/typography/Text";
 import ProjectCreateNewProject from "./ProjectCreateNewProject";
+import {openModal} from "../../store/actions";
+import connect from "react-redux/es/connect/connect";
 
 class ProjectList extends Component {
     constructor(props){
@@ -36,10 +38,10 @@ class ProjectList extends Component {
     };
 
     showModal = () => {
-        this.setState({
-            ...this.state,
-            addProject: true,
-        });
+
+
+        this.props.openModal();
+
     };
 
 
@@ -77,7 +79,7 @@ class ProjectList extends Component {
                             <Button type="primary" onClick={this.showModal} icon={"plus"}>
                                 Add a new apartment
                             </Button>
-                            <ProjectCreateNewProject addProject={this.state.addProject}/>
+                            <ProjectCreateNewProject />
                         </Col>
                         {renderProjects}
                     </Row>
@@ -87,4 +89,18 @@ class ProjectList extends Component {
     }
 }
 
-export default ProjectList;
+const mapStateToProps =(state)=> {
+    return {
+        modalOpen:  state.reducerExample.modalOpen,
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        // dispatching actions returned by action creators
+        openModal: () => dispatch(openModal()),
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);
