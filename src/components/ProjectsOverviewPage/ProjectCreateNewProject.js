@@ -4,7 +4,6 @@ import Text from "antd/lib/typography/Text";
 import {connect} from "react-redux";
 import {API_BASE_URL, GET_OWNER_APARTMENT_LIST, POST_CREATE_APARTMENT} from "../../constants/api";
 import axios from 'axios';
-import reducerExample from "../../store/reducerExample";
 import {closeModal} from "../../store/actions";
 
 class ProjectCreateNewProject extends Component {
@@ -53,7 +52,7 @@ class ProjectCreateNewProject extends Component {
         axios.post(`${API_BASE_URL}${POST_CREATE_APARTMENT}`, this.state.apartment)
             .then(res => {
                 console.log(res);
-
+                this.props.closeModal();
             })
             .catch(err => {
                 console.log("err");
