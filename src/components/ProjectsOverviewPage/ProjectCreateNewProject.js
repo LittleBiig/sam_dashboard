@@ -2,16 +2,11 @@ import React, {Component} from 'react';
 import {Button, Col, DatePicker, Icon, Input, Modal, Row} from 'antd';
 import Text from "antd/lib/typography/Text";
 import {connect} from "react-redux";
-import {API_BASE_URL, GET_OWNER_APARTMENT_LIST, POST_CREATE_APARTMENT} from "../../constants/api";
+import {API_BASE_URL, POST_CREATE_APARTMENT} from "../../constants/api";
 import axios from 'axios';
-import {closeModal} from "../../store/actions";
+import {closeModal} from "../../store/apartments/apartments-actions";
 
 class ProjectCreateNewProject extends Component {
-
-
-
-
-
     constructor(props){
         super(props);
         this.state = {
@@ -45,7 +40,6 @@ class ProjectCreateNewProject extends Component {
         this.onInputChange = this.onInputChange.bind(this);
         this.createNewApartment = this.createNewApartment.bind(this);
         this.addProjectHandleCancel = this.addProjectHandleCancel.bind(this);
-
     }
 
     createNewApartment = () => {
@@ -228,7 +222,7 @@ class ProjectCreateNewProject extends Component {
 
 const mapStateToProps =(state)=> {
     return {
-        modalOpen:  state.reducerExample.modalOpen,
+        modalOpen:  state.apartmentsReducer.modalOpen,
     }
 };
 

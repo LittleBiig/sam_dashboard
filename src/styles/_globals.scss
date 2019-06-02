@@ -13,15 +13,17 @@ $md-secondary-color: $md-purple-a-400;
 
 // Color variables
 $sam-color--black--primary: black;
-$sam-color--grey--primary: rgba(0, 0, 0, 0.65);
-$sam-color--grey--secondary: rgba(0, 0, 0, 0.75); // box-shadows,
-$sam-color--grey--tertiary: rgba(0, 0, 0, 0.45); // box-shadows,
+$sam-color--black--secondary: rgba(0, 0, 0, 0.65);
+$sam-color--grey--primary: rgba(18,37,31,.35); // box-shadows,
+$sam-color--grey--secondary: #3c3a38;
+$sam-color--grey--tertiary: #9c9e9f; // box-shadows,
 $sam-color--blue--primary: #1890ff;
 $sam-color--white--primary: white;
 
 
 $colors-list:
         $sam-color--black--primary
+        $sam-color--black--secondary
         $sam-color--grey--primary
         $sam-color--grey--secondary
         $sam-color--grey--tertiary

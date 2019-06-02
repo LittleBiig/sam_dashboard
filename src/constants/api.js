@@ -8,6 +8,7 @@ export const API_BASE_URL = "https://sam-dashboard-test.herokuapp.com";
 // back-end routes
 export const POST_OWNER_LOGIN = "/owner_login"; // POST  {"email": "real@bot.com","password": "realbot123"}
 export const GET_OWNER_DATA = "/get_owner_data"; // GET  X-Auth in every following request
+export const POST_SIGNUP = "/owner_signup"; // POST  create a new user
 export const GET_OWNER_LOGOUT = "/owner_logout"; // GET
 export const GET_OWNER_ROBOT_LIST = "/get_owner_robot_list"; // GET
 export const GET_ROBOT___ID = "/robot"; // GET "/robot/{id}"

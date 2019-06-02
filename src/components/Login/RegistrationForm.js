@@ -1,40 +1,81 @@
 import React from "react";
 import {
-    Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Card,
+    Form, Input, Tooltip, Icon, Row, Col, Checkbox, Button, Card,
 } from 'antd';
-
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
-
-const residences = [{
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [{
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [{
-            value: 'xihu',
-            label: 'West Lake',
-        }],
-    }],
-}, {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [{
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [{
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-        }],
-    }],
-}];
+import axios from "axios";
+import {API_BASE_URL, POST_SIGNUP} from "../../constants/api";
 
 class RegistrationForm_ extends React.Component {
-    state = {
-        confirmDirty: false,
-        autoCompleteResult: [],
-    };
+
+    constructor(props){
+        super(props);
+        this.state = {
+            confirmDirty: false,
+            autoCompleteResult: [],
+            sign_up: {
+                serial_number: "4444-0000-2344-3333-0020",
+                email: "test@email.com",
+                firstname: "test",
+                lastname: "guy",
+                password: "123456",
+                password_confirm:"123456",
+                office_address: {
+                    street: "new street 1",
+                    house_nr: 1,
+                    zip: 800,
+                    city: "somewhere",
+                    country: "ch",
+                },
+            },
+        };
+        this.createNewUser = this.createNewUser.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.onInputChange = this.onInputChange.bind(this);
+        this.onAddressInputChange = this.onAddressInputChange.bind(this);
+        this.handleConfirmBlur = this.handleConfirmBlur.bind(this);
+        this.compareToFirstPassword = this.compareToFirstPassword.bind(this);
+        this.validateToNextPassword = this.validateToNextPassword.bind(this);
+        this.handleWebsiteChange = this.handleWebsiteChange.bind(this);
+    }
+
+
+    createNewUser = () => {
+        axios.post(`${API_BASE_URL}${POST_SIGNUP}`, this.state.sign_up)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log("err");
+                console.log(err);
+            })
+    }
+
+
+    onInputChange(e){
+        let {name, value} = e.target;
+        this.setState({
+            ...this.state,
+            sign_up: {
+                ...this.state.sign_up,
+                [name]: value,
+            }
+        });
+    }
+
+    onAddressInputChange(e){
+        let {name, value} = e.target;
+        this.setState({
+            ...this.state,
+            sign_up: {
+                ...this.state.sign_up,
+                office_address: {
+                    ...this.state.office_address,
+                    [name]: value,
+                }
+            }
+        });
+    }
+
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -43,6 +84,7 @@ class RegistrationForm_ extends React.Component {
                 console.log('Received values of form: ', values);
             }
         });
+        this.createNewUser();
     }
 
     handleConfirmBlur = (e) => {
@@ -62,7 +104,7 @@ class RegistrationForm_ extends React.Component {
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
+            form.validateFields(['password_confirm'], { force: true });
         }
         callback();
     }
@@ -79,7 +121,6 @@ class RegistrationForm_ extends React.Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { autoCompleteResult } = this.state;
 
         const formItemLayout = {
             labelCol: {
@@ -103,24 +144,32 @@ class RegistrationForm_ extends React.Component {
                 },
             },
         };
-        const prefixSelector = getFieldDecorator('prefix', {
-            initialValue: '86',
-        })(
-            <Select style={{ width: 70 }}>
-                <Option value="86">+86</Option>
-                <Option value="87">+87</Option>
-            </Select>
-        );
-
-        const websiteOptions = autoCompleteResult.map(website => (
-            <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-        ));
 
         return (
             <Row>
                 <Col span={12} offset={6} style={{backgroundColor: "white"}}>
                     <Card>
                         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+                            <Form.Item
+                                label={(
+                                    <span>
+                          Serial number&nbsp;
+                                        <Tooltip title="You will find this in the box">
+                            <Icon type="question-circle-o" />
+                          </Tooltip>
+                        </span>
+                                )}
+                            >
+                                {getFieldDecorator('serial_number', {
+                                    rules: [{
+                                        type: 'number', message: 'Please input a number',
+                                    }, {
+                                        required: true, message: 'Please input your serial number!',
+                                    }],
+                                })(
+                                    <Input id={"serial_number"} onChange={this.onInputChange} setFieldsValue={this.state.sign_up.serial_number}/>
+                                )}
+                            </Form.Item>
                             <Form.Item
                                 label="E-mail"
                             >
@@ -131,7 +180,25 @@ class RegistrationForm_ extends React.Component {
                                         required: true, message: 'Please input your E-mail!',
                                     }],
                                 })(
-                                    <Input />
+                                    <Input id={"email"} onChange={this.onInputChange} value={this.state.sign_up.email}/>
+                                )}
+                            </Form.Item>
+                            <Form.Item
+                                label="First Name"
+                            >
+                                {getFieldDecorator('first name', {
+                                    rules: [{ required: true, message: 'Please input your first name!', whitespace: true }],
+                                })(
+                                    <Input id={"firstname"} onChange={this.onInputChange} value={this.state.sign_up.firstname} />
+                                )}
+                            </Form.Item>
+                            <Form.Item
+                                label="Last Name"
+                            >
+                                {getFieldDecorator('last name', {
+                                    rules: [{ required: true, message: 'Please input your last name!', whitespace: true }],
+                                })(
+                                    <Input id={"lastname"} onChange={this.onInputChange}/>
                                 )}
                             </Form.Item>
                             <Form.Item
@@ -144,88 +211,67 @@ class RegistrationForm_ extends React.Component {
                                         validator: this.validateToNextPassword,
                                     }],
                                 })(
-                                    <Input type="password" />
+                                    <Input type="password" id={"password"} onChange={this.onInputChange}/>
                                 )}
                             </Form.Item>
                             <Form.Item
                                 label="Confirm Password"
                             >
-                                {getFieldDecorator('confirm', {
+                                {getFieldDecorator('password_confirm', {
                                     rules: [{
                                         required: true, message: 'Please confirm your password!',
                                     }, {
                                         validator: this.compareToFirstPassword,
                                     }],
                                 })(
-                                    <Input type="password" onBlur={this.handleConfirmBlur} />
+                                    <Input type="password" onBlur={this.handleConfirmBlur} id={"password_confirm"} onChange={this.onInputChange}/>
                                 )}
                             </Form.Item>
+                            <div>Address</div>
                             <Form.Item
-                                label={(
-                                    <span>
-                          Nickname&nbsp;
-                                        <Tooltip title="What do you want others to call you?">
-                            <Icon type="question-circle-o" />
-                          </Tooltip>
-                        </span>
-                                )}
+                                label="Street"
                             >
                                 {getFieldDecorator('nickname', {
-                                    rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+                                    rules: [{ required: true, message: 'Please input your last name!', whitespace: true }],
                                 })(
-                                    <Input />
+                                    <Input id={"street"} onChange={this.onAddressInputChange} />
                                 )}
                             </Form.Item>
                             <Form.Item
-                                label="Habitual Residence"
+                                label="house_nr"
                             >
-                                {getFieldDecorator('residence', {
-                                    initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-                                    rules: [{ type: 'array', required: true, message: 'Please select your habitual residence!' }],
+                                {getFieldDecorator('nickname', {
+                                    rules: [{ required: true, message: 'Please input your last name!', whitespace: true }],
                                 })(
-                                    <Cascader options={residences} />
+                                    <Input id={"house_nr"} onChange={this.onAddressInputChange}/>
                                 )}
                             </Form.Item>
                             <Form.Item
-                                label="Phone Number"
+                                label="zip"
                             >
-                                {getFieldDecorator('phone', {
-                                    rules: [{ required: true, message: 'Please input your phone number!' }],
+                                {getFieldDecorator('nickname', {
+                                    rules: [{ required: true, message: 'Please input your last name!', whitespace: true }],
                                 })(
-                                    <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+                                    <Input id={"zip"} onChange={this.onAddressInputChange}/>
                                 )}
                             </Form.Item>
                             <Form.Item
-                                label="Website"
+                                label="city"
                             >
-                                {getFieldDecorator('website', {
-                                    rules: [{ required: true, message: 'Please input website!' }],
+                                {getFieldDecorator('nickname', {
+                                    rules: [{ required: true, message: 'Please input your last name!', whitespace: true }],
                                 })(
-                                    <AutoComplete
-                                        dataSource={websiteOptions}
-                                        onChange={this.handleWebsiteChange}
-                                        placeholder="website"
-                                    >
-                                        <Input />
-                                    </AutoComplete>
+                                    <Input id={"city"} onChange={this.onAddressInputChange}/>
                                 )}
                             </Form.Item>
                             <Form.Item
-                                label="Captcha"
-                                extra="We must make sure that your are a human."
+                                label="country"
                             >
-                                <Row gutter={8}>
-                                    <Col span={12}>
-                                        {getFieldDecorator('captcha', {
-                                            rules: [{ required: true, message: 'Please input the captcha you got!' }],
-                                        })(
-                                            <Input />
-                                        )}
-                                    </Col>
-                                    <Col span={12}>
-                                        <Button>Get captcha</Button>
-                                    </Col>
-                                </Row>
+                                {getFieldDecorator('nickname', {
+                                    rules: [{ required: true, message: 'Please input your last name!', whitespace: true }],
+                                })(
+                                    <Input id={"country"} onChange={this.onAddressInputChange}/>
+                                )}
                             </Form.Item>
                             <Form.Item {...tailFormItemLayout}>
                                 {getFieldDecorator('agreement', {
@@ -237,6 +283,7 @@ class RegistrationForm_ extends React.Component {
                             <Form.Item {...tailFormItemLayout}>
                                 <Button type="primary" htmlType="submit">Register</Button>
                             </Form.Item>
+
                         </Form>
                     </Card>
                 </Col>

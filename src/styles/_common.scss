@@ -1,5 +1,5 @@
 $sam-unit--padding--card-bottom: 30px;
-$sam-unit--box-shadow--medium: 0px 0px 27px -9px $sam-color--grey--secondary;
+$sam-unit--box-shadow--medium: 0 4px 8px 0 $sam-color--grey--primary;
 
 .card-wrapper {
   background-color: $sam-color--white--primary;
@@ -11,4 +11,8 @@ $sam-unit--box-shadow--medium: 0px 0px 27px -9px $sam-color--grey--secondary;
 
 .anticon {
   vertical-align: 0;
+}
+
+.md-tile-addon--icon{
+  height: auto;
 }

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import reducerExample from './reducerExample';
+import robotsReducer from './robots/robots-reducer';
+import apartmentsReducer from './apartments/apartments-reducer';
 
 const globalReducer = combineReducers({
-    reducerExample : reducerExample
+    robotsReducer : robotsReducer,
+    apartmentsReducer : apartmentsReducer
 });
 
 export default globalReducer;

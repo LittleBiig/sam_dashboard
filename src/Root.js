@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Route, Switch} from 'react-router-dom';
-import {Button, Drawer} from 'react-md';
+import { Drawer } from 'react-md';
 import { toTitle } from './utils/strings';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import NavItemLink from './containers/NavItemLink';
 import LoginForm from "./components/Login/LoginForm";
-import {Icon} from "antd";
+import {Button, Icon} from "antd";
 import ToolbarWithBadge from "./containers/ToolbarWithBadge";
 import ProjectListContainer from "./components/ProjectsOverviewPage/ProjectListContainer";
 import {API_PREFIX} from "./constants/api";
@@ -120,7 +120,7 @@ class Root extends PureComponent {
         return (
             <div>
                 <ToolbarWithBadge
-                    nav={<Button icon onClick={this.showDrawer}><Icon type="align-right" /></Button>}
+                    nav={<Button type="link" onClick={this.showDrawer}><Icon type="menu" /></Button>}
                     notifications={this.state.notifications}
                     onDismiss={this.dismiss} />
                 <CSSTransitionGroup
