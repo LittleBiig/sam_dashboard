@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
+import {Redirect, withRouter} from 'react-router';
 import { Route, Switch} from 'react-router-dom';
 import { Drawer } from 'react-md';
 import { toTitle } from './utils/strings';
@@ -131,6 +131,7 @@ class Root extends PureComponent {
                     className="md-toolbar-relative"
                 >
                     <Switch key={location.pathname}>
+                        <Route path={`${API_PREFIX}`} exact render={() => <Redirect to={navItems[3].to}/>}/>
                         <Route path={navItems[0].to} exact component={LoginForm} />
                         <Route path={navItems[1].to} exact component={RegistrationForm} />
                         <Route path={navItems[2].to} component={RobotListContainer} />

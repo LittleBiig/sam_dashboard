@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import {API_BASE_URL, API_PREFIX, GET_APARTMENT___ID } from "../../constants/api";
 import Text from "antd/lib/typography/Text";
+import connect from "react-redux/es/connect/connect";
+import LinkRobotToApartment from "../RobotDetailPage/LinkRobotToApartment";
+import {linkApartmentToRobotOpenModal} from "../../store/robots/robots-actions";
 
 
 /*
@@ -94,6 +97,12 @@ class RobotListItem extends Component {
         }
     }
 
+
+    showModal = () => {
+        this.props.openModal();
+    };
+
+
     render() {
         {/* TODO : checkout the todo's below */}
 
@@ -171,15 +180,32 @@ class RobotListItem extends Component {
                         </Col>
                         <Col className={"robot-overview--footer text-center"}>
                             <Text className={""} style={{"color":"white"}}>
-                                This SAM is not linked to any apartment <Link className={"robot-overview--footer--links"} to={"/"}><u>Choose</u></Link>
+                                This SAM is not linked to any apartment <Button className={"robot-overview--footer--links"} onClick={this.showModal}><u>Choose</u></Button>
                                 {/* TODO : 'This SAM is not linked to any apartment' Choose (function) */}
                             </Text>
                         </Col>
                     </Row>
                 </Col>
+                <LinkRobotToApartment />
             </Row>
         );
     }
 }
 
-export default RobotListItem;
+
+const mapStateToProps =(state)=> {
+    return {
+        linkApartmentToRobotModalVisibility:  state.robotsReducer.linkApartmentToRobotModalVisibility,
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        // dispatching actions returned by action creators
+        openModal: () => dispatch(linkApartmentToRobotOpenModal()),
+    }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(RobotListItem);

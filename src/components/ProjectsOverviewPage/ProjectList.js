@@ -84,7 +84,7 @@ class ProjectList extends Component {
 
 const mapStateToProps =(state)=> {
     return {
-        modalOpen:  state.apartmentsReducer.modalOpen,
+        createApartmentModalOpen:  state.apartmentsReducer.createApartmentModalOpen,
     }
 };
 

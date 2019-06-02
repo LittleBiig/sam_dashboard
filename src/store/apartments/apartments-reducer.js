@@ -1,12 +1,22 @@
-const apartmentsReducer=(state={modalOpen: true}, action)=>{
+const initialApartmentsState = {
+    linkApartmentToRobotModalVisibility: false
+};
+
+const apartmentsReducer=(state=initialApartmentsState, action)=>{
 
     switch(action.type)
     {
-        case 'CLOSE_MODAL' :
-            return {modalOpen:false};
+        case 'CREATE_APARTMENT_CLOSE_MODAL' :
+            return {
+                ...state,
+                linkApartmentToRobotModalVisibility:false
+            };
 
-        case 'OPEN_MODAL' :
-            return {modalOpen:true};
+        case 'CREATE_APARTMENT_OPEN_MODAL' :
+            return {
+                ...state,
+                linkApartmentToRobotModalVisibility:true
+            };
 
         default :
             return state ;
