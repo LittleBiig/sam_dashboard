@@ -167,7 +167,7 @@ class RegistrationForm_ extends React.Component {
                                         required: true, message: 'Please input your serial number!',
                                     }],
                                 })(
-                                    <Input id={"serial_number"} onChange={this.onInputChange} setFieldsValue={this.state.sign_up.serial_number}/>
+                                    <Input id={"serial_number"} onChange={this.onInputChange} value={this.state.sign_up.serial_number || 0}/>
                                 )}
                             </Form.Item>
                             <Form.Item
@@ -180,7 +180,7 @@ class RegistrationForm_ extends React.Component {
                                         required: true, message: 'Please input your E-mail!',
                                     }],
                                 })(
-                                    <Input id={"email"} onChange={this.onInputChange} value={this.state.sign_up.email}/>
+                                    <Input id={"email"} onChange={this.onInputChange} defaultValue={this.state.sign_up.email}/>
                                 )}
                             </Form.Item>
                             <Form.Item
@@ -189,7 +189,7 @@ class RegistrationForm_ extends React.Component {
                                 {getFieldDecorator('first name', {
                                     rules: [{ required: true, message: 'Please input your first name!', whitespace: true }],
                                 })(
-                                    <Input id={"firstname"} onChange={this.onInputChange} value={this.state.sign_up.firstname} />
+                                    <Input id={"firstname"} onChange={this.onInputChange} defaultValue={this.state.sign_up.firstname} />
                                 )}
                             </Form.Item>
                             <Form.Item

@@ -41,11 +41,17 @@ class ProjectList extends Component {
     renderProjects = () => {
         let array_render=[];
         for(let i=0;i<this.state.projects.length;i++){
+            const sizes= typeof this.props.size  !== 'undefined' ?
+                (
+                    this.props.size === "BIG" ?
+                        {xs:24, sm:12, lg:8, xl:6} : {xs:24, sm:12, lg:8, xl:12}
+                ) : {xs:24, sm:12, lg:8, xl:6};
             array_render.push(
-                <Col xs={24} sm={12} lg={8} xl={6} key={i} className={"project-list"}>
+                <Col {...sizes} key={i} className={"project-list"}>
                     <ProjectListItem
                         className={"project-list-item"}
                         project={this.state.projects[i]}
+                        size={(typeof this.props.size  !== 'undefined' ? this.props.size : "BIG")}
                     />
                 </Col>
             );
@@ -67,10 +73,16 @@ class ProjectList extends Component {
                 >
                     <Row gutter={24}>
                         <Col xs={24} className={"mb-5"}>
-                            <Text className={"h1"}>APARTMENTS | </Text>
-                            <Button type="primary" onClick={this.showModal} icon={"plus"}>
+                            {(typeof this.props.showHeader  !== 'undefined' ? this.props.showHeader : true)
+                                &&
+                                (
+                                <> <Text className={"h1"}>APARTMENTS | </Text>
+                                <Button type="primary" onClick={this.showModal} icon={"plus"}>
                                 Add a new apartment
-                            </Button>
+                                </Button> </>
+                                )
+                            }
+
                             <ProjectCreateNewProject />
                         </Col>
                         {renderProjects}

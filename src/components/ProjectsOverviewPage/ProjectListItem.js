@@ -36,58 +36,84 @@ _id: string,
 class ProjectListItem extends Component {
     constructor(props){
         super(props);
+        this.chooseApartment = this.chooseApartment.bind(this);
     }
 
-    render() {
-        {/* TODO : checkout the todo's below */}
-        return (
-            <Row className={"project-list-item p-2"}>
-                <Col className={"text-center mb-1"}>
-                    <div className={"project-list-item--image"} >
-                        <Empty
-                            description={
-                                <>
-                                    <span>No image</span>
-                                    <a style={{"display":"block"}} href="/">Select image</a>
-                                    {/* TODO : 'no image' select image */}
-                                </>
-                            }
-                            image={Empty.PRESENTED_IMAGE_SIMPLE} />
-                    </div>
-                </Col>
+    chooseApartment = () => {
+        console.log("flat chosen");
+    };
 
-                <Col className={"text-center mb-2"}>
-                    <Icon type="home" style={{ fontSize: '32px' }}/>
-                </Col>
-                <Col className={"text-center"}>
-                    <Text className={"h3"} strong>{this.props.project.name}</Text>
-                </Col>
-                <Col className={"text-center mb-3"}>
-                    <Text type="secondary" className={""}><small>last update: today at 18/03/19 15:21</small></Text>
-                    {/* TODO : 'last update:' today at 18/03/19 15:21 */}
-                </Col>
-                <Divider/>
-                <Col className={"text-center mb-2"}>
-                    <Text >Number of viewings</Text>
-                </Col>
-                <Col className={"text-center mb-3"}>
-                    <div className={"h3"}><Icon className={"mr-1"} type="eye" /><span>9</span></div>
-                    {/* TODO : 'Number of viewings' 9 */}
-                </Col>
-                <Col className={"text-center mb-2"}>
-                    <Text >Total viewing time</Text>
-                </Col>
-                <Col className={"text-center mb-4"}>
-                    <div className={"h3"}><Icon className={"mr-1"} type="dashboard" /><span>1h 12mn</span></div>
-                    {/* TODO : 'Total viewing time' 1h 12mn */}
-                </Col>
-                <Col className={"text-center mb-4"}>
-                    <Link to={`${API_PREFIX}/projects/${this.props.project._id}`}>
-                        <Button component="span" type= "secondary" className={"project-overview--content--see-more ant-btn btn-secondary"}>SEE MORE</Button>
-                    </Link>
-                </Col>
-            </Row>
-        );
+    render() {
+
+        if(this.props.size === "BIG"){
+            return (
+                <Row className={"project-list-item p-2"}>
+                    <Col className={"text-center mb-1"}>
+                        <div className={"project-list-item--image"} >
+                            <Empty
+                                description={
+                                    <>
+                                        <span>No image</span>
+                                        <a style={{"display":"block"}} href="/">Select image</a>
+                                        {/* TODO : 'no image' select image */}
+                                    </>
+                                }
+                                image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                        </div>
+                    </Col>
+
+                    <Col className={"text-center mb-2"}>
+                        <Icon type="home" style={{ fontSize: '32px' }}/>
+                    </Col>
+                    <Col className={"text-center"}>
+                        <Text className={"h3"} strong>{this.props.project.name}</Text>
+                    </Col>
+                    <Col className={"text-center mb-3"}>
+                        <Text type="secondary" className={""}><small>last update: today at 18/03/19 15:21</small></Text>
+                        {/* TODO : 'last update:' today at 18/03/19 15:21 */}
+                    </Col>
+                    <Divider/>
+                    <Col className={"text-center mb-2"}>
+                        <Text >Number of viewings</Text>
+                    </Col>
+                    <Col className={"text-center mb-3"}>
+                        <div className={"h3"}><Icon className={"mr-1"} type="eye" /><span>9</span></div>
+                        {/* TODO : 'Number of viewings' 9 */}
+                    </Col>
+                    <Col className={"text-center mb-2"}>
+                        <Text >Total viewing time</Text>
+                    </Col>
+                    <Col className={"text-center mb-4"}>
+                        <div className={"h3"}><Icon className={"mr-1"} type="dashboard" /><span>1h 12mn</span></div>
+                        {/* TODO : 'Total viewing time' 1h 12mn */}
+                    </Col>
+                    <Col className={"text-center mb-4"}>
+                        <Link to={`${API_PREFIX}/projects/${this.props.project._id}`}>
+                            <Button component="span" type= "secondary" className={"project-overview--content--see-more ant-btn btn-secondary"}>SEE MORE</Button>
+                        </Link>
+                    </Col>
+                </Row>
+            );
+
+        } else { // if SMALL
+            return(
+                <Row className={"project-list-item p-2 small"} onClick={this.chooseApartment}>
+                    <Col className={"text-center mb-2"}>
+                        <Icon type="home" style={{ fontSize: '32px' }}/>
+                    </Col>
+                    <Col className={"text-center"}>
+                        <Text className={"h3"} strong>{this.props.project.name}</Text>
+                    </Col>
+                    <Col className={"text-center mb-3"}>
+                        <Text type="secondary" className={""}><small>last update: today at 18/03/19 15:21</small></Text>
+                        {/* TODO : 'last update:' today at 18/03/19 15:21 */}
+                    </Col>
+                </Row>
+
+            )
+        }
+        {/* TODO : checkout the todo's below */}
+
     }
 }
 

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {API_BASE_URL, POST_CREATE_APARTMENT} from "../../constants/api";
 import axios from 'axios';
 import {linkApartmentToRobotCloseModal} from "../../store/robots/robots-actions";
+import ProjectList from "../ProjectsOverviewPage/ProjectList";
 
 class ProjectCreateNewProject extends Component {
     constructor(props){
@@ -106,7 +107,8 @@ class ProjectCreateNewProject extends Component {
             >
                 <Row>
                     <Col xs={24}>
-                        hello
+                        Choose which project this robot is linked to.
+                        <ProjectList showHeader={false} size={"SMALL"}/>
                     </Col>
                 </Row>
             </Modal>
