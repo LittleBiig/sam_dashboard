@@ -13,7 +13,6 @@ class ProjectList extends Component {
         super(props);
         this.state = {
             projects: [],
-            addProject: false,
         }
     }
 

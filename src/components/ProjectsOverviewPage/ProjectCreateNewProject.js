@@ -101,7 +101,7 @@ class ProjectCreateNewProject extends Component {
         return (
             <Modal
                 title="New apartment"
-                visible={this.props.createApartmentModalOpen}
+                visible={this.props.linkApartmentToRobotModalVisibility}
                 onOk={this.addProjectHandleOk}
                 onCancel={this.addProjectHandleCancel}
                 footer={[
@@ -222,7 +222,7 @@ class ProjectCreateNewProject extends Component {
 
 const mapStateToProps =(state)=> {
     return {
-        createApartmentModalOpen:  state.apartmentsReducer.createApartmentModalOpen,
+        linkApartmentToRobotModalVisibility:  state.apartmentsReducer.linkApartmentToRobotModalVisibility,
     }
 };
 

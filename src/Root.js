@@ -116,6 +116,7 @@ class Root extends PureComponent {
         const { location } = this.props;
         const { visible } = this.state;
         const navItemsMapped = navItems.map(props => <NavItemLink {...props} key={props.to} />);
+        const home_url = navItems[3].to;
 
         return (
             <div>
@@ -131,7 +132,7 @@ class Root extends PureComponent {
                     className="md-toolbar-relative"
                 >
                     <Switch key={location.pathname}>
-                        <Route path={`${API_PREFIX}`} exact render={() => <Redirect to={navItems[3].to}/>}/>
+                        <Route path={`${API_PREFIX}`} exact render={() => <Redirect to={home_url} />}/>
                         <Route path={navItems[0].to} exact component={LoginForm} />
                         <Route path={navItems[1].to} exact component={RegistrationForm} />
                         <Route path={navItems[2].to} component={RobotListContainer} />

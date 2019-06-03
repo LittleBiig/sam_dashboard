@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Row, Col, Divider, Icon, Badge, Avatar, Tag, Button} from 'antd';
+import {Row, Col, Divider, Icon, Badge, Avatar, Button} from 'antd';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import {API_BASE_URL, API_PREFIX, GET_APARTMENT___ID } from "../../constants/api";
@@ -180,7 +180,12 @@ class RobotListItem extends Component {
                         </Col>
                         <Col className={"robot-overview--footer text-center"}>
                             <Text className={""} style={{"color":"white"}}>
-                                This SAM is not linked to any apartment <Button className={"robot-overview--footer--links"} onClick={this.showModal}><u>Choose</u></Button>
+                                This SAM is not linked to any apartment
+                                <Button
+                                    className={"robot-overview--footer--links"}
+                                    onClick={this.showModal}
+                                    type={"link"} ghost ><u>Choose</u>
+                                </Button>
                                 {/* TODO : 'This SAM is not linked to any apartment' Choose (function) */}
                             </Text>
                         </Col>
