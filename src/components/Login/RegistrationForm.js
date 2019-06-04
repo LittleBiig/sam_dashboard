@@ -4,6 +4,7 @@ import {
 } from 'antd';
 import axios from "axios";
 import {API_BASE_URL, POST_SIGNUP} from "../../constants/api";
+import Text from "antd/lib/typography/Text";
 
 class RegistrationForm_ extends React.Component {
 
@@ -27,6 +28,7 @@ class RegistrationForm_ extends React.Component {
                     country: "ch",
                 },
             },
+            error: "",
         };
         this.createNewUser = this.createNewUser.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,6 +63,10 @@ class RegistrationForm_ extends React.Component {
             .catch(err => {
                 console.log("err");
                 console.log(err);
+                this.setState({
+                    ...this.state,
+                    error: err.toString(),
+                });
             })
     }
 
@@ -304,7 +310,7 @@ class RegistrationForm_ extends React.Component {
                             <Form.Item {...tailFormItemLayout}>
                                 <Button type="primary"  htmlType="submit">Register</Button>
                             </Form.Item>
-
+                            <Text type="danger">{this.state.error}</Text>
                         </Form>
                     </Card>
                 </Col>

@@ -116,7 +116,7 @@ class Root extends PureComponent {
         const { location } = this.props;
         const { visible } = this.state;
         const navItemsMapped = navItems.map(props => <NavItemLink {...props} key={props.to} />);
-        const home_url = navItems[3].to;
+        const home_url = navItems[0].to;
 
         return (
             <div>
