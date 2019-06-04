@@ -2,16 +2,44 @@ import {
     Form, Icon, Input, Button, Checkbox, Row, Col, Card,
 } from 'antd';
 import React from "react";
+import axios from "axios";
+import {API_BASE_URL, POST_OWNER_LOGIN, POST_SIGNUP} from "../../constants/api";
 
 class NormalLoginForm extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.signIn = this.signIn.bind(this);
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
             }
+            this.signIn(values);
         });
     }
+
+
+    signIn = (values) => {
+        const sign_in = {
+            email: "real@bot.com",
+            password: "realbot123"
+        };
+        axios.post(`${API_BASE_URL}${POST_OWNER_LOGIN}`, sign_in)
+            .then(res => {
+                console.log(res);
+                console.log(res.headers['x-auth']);
+                axios.defaults.headers.common['x-auth'] = res.headers['x-auth'];
+            })
+            .catch(err => {
+                console.log("err");
+                console.log(err);
+            })
+    }
+
 
     render() {
         const { getFieldDecorator } = this.props.form;

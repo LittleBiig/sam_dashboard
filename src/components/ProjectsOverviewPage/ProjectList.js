@@ -17,8 +17,6 @@ class ProjectList extends Component {
     }
 
     componentDidMount() {
-        axios.defaults.headers.common['x-auth'] =
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2I1MDZiNWM2YTkwNzAwMTZmNjNjZjAiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTU2NzE1NDM0fQ.Nozm4JityHSxugp0qrdHlBj_mSeVpMog86uG48UnNl4";
         axios.get(`${API_BASE_URL}${GET_OWNER_APARTMENT_LIST}`)
             .then(res => {
                 console.log("res.data");
