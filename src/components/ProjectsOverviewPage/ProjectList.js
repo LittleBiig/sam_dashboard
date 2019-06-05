@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import ProjectListItem from "./ProjectListItem";
-import {Button, Col, Row} from 'antd';
+import {Button, Col, Icon, Row} from 'antd';
 import axios from 'axios';
 import {API_BASE_URL, GET_OWNER_APARTMENT_LIST } from "../../constants/api";
 import Text from "antd/lib/typography/Text";
 import ProjectCreateNewProject from "./ProjectCreateNewProject";
 import { openModal } from "../../store/apartments/apartments-actions";
 import connect from "react-redux/es/connect/connect";
+import {Form} from "antd/lib/form";
 
 class ProjectList extends Component {
     constructor(props){
         super(props);
         this.state = {
             projects: [],
+            pending: true,
+            error: "",
         }
     }
 
@@ -24,11 +27,18 @@ class ProjectList extends Component {
                 this.setState({
                     ...this.state,
                     projects: res.data,
+                    pending: false,
+                    error: "",
                 });
             })
             .catch(err => {
                 console.log("error");
                 console.log(err);
+                this.setState({
+                    ...this.state,
+                    pending: false,
+                    error: err.toString(),
+                });
             });
     };
 
@@ -82,8 +92,11 @@ class ProjectList extends Component {
                             }
 
                             <ProjectCreateNewProject />
+                            {this.state.pending && <Icon type="loading" />}
+                            <Text type="danger">{this.state.error}</Text>
                         </Col>
                         {renderProjects}
+
                     </Row>
                 </Col>
             </Row>

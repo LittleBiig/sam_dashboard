@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RobotListItem from "./RobotListItem";
-import {Col, Row} from 'antd';
+import {Col, Icon, Row} from 'antd';
 import axios from 'axios';
 import {API_BASE_URL, GET_OWNER_DATA, GET_ROBOT___ID} from "../../constants/api";
 import Text from "antd/lib/typography/Text";
@@ -10,6 +10,8 @@ class RobotList extends Component {
         super(props);
         this.state = {
             robots: {},
+            pending: true,
+            error: "",
         }
     }
 
@@ -48,11 +50,23 @@ class RobotList extends Component {
                     .then(res => {
                         robots.push(res.data);
                         this.setState({
+                            ...this.state,
                             robots: robots,
+                            pending: false,
+                            error: "",
                         });
                     })
                 }
             })
+            .catch(err => {
+                console.log("error");
+                console.log(err);
+                this.setState({
+                    ...this.state,
+                    pending: false,
+                    error: err.toString(),
+                });
+            });
     }
 
     renderRobots = () => {
@@ -84,6 +98,8 @@ class RobotList extends Component {
                     <Row gutter={24}>
                         <Col xs={24} className={"text-center mb-5"}>
                             <Text className={"h1"}>ROBOTS</Text>
+                            {this.state.pending && <Icon type="loading" />}
+                            <Text type="danger">{this.state.error}</Text>
                         </Col>
                         {renderRobots}
                     </Row>

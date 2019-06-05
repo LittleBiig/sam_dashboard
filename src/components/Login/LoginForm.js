@@ -3,16 +3,16 @@ import {
 } from 'antd';
 import React from "react";
 import axios from "axios";
-import {API_BASE_URL, API_PREFIX, POST_OWNER_LOGIN, POST_SIGNUP} from "../../constants/api";
+import {API_BASE_URL, API_PREFIX, POST_OWNER_LOGIN } from "../../constants/api";
 import {Link} from "react-router-dom";
 import Text from "antd/lib/typography/Text";
-import {Redirect} from "react-router";
 
 class NormalLoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             success : "",
+            pending: false,
             error : "",
         };
         this.signIn = this.signIn.bind(this);
@@ -24,7 +24,10 @@ class NormalLoginForm extends React.Component {
             if (!err) {
                 console.log('Received values of form: ', values);
             }
-            this.signIn(values);
+            this.setState({
+                ...this.state,
+                pending: true,
+            }, () => this.signIn(values));
         });
     }
 
@@ -41,6 +44,8 @@ class NormalLoginForm extends React.Component {
                 this.setState({
                     ...this.state,
                     success: `You are logged in as ${res.data.firstname} ${res.data.lastname}`,
+                    pending: false,
+                    error: "",
                 });
             })
             .catch(err => {
@@ -49,6 +54,7 @@ class NormalLoginForm extends React.Component {
                 this.setState({
                     ...this.state,
                     error: err.toString(),
+                    pending: false,
                 });
             })
     }
@@ -81,6 +87,7 @@ class NormalLoginForm extends React.Component {
                                 <Button type="primary" htmlType="submit" className="login-form-button">
                                     Log in
                                 </Button>
+                                {this.state.pending && <Icon type="loading" />}
                                 <Text mark>{this.state.success}</Text>
                                 <Text type="danger">{this.state.error}</Text>
                                 <br />
